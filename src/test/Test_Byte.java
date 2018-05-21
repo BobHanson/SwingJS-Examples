@@ -45,6 +45,9 @@ class Test_Byte extends Test_ {
 		b = 127;
 		b += 127;
 		b++;
+		short sh = b;
+		short sh1 = sh;
+		checkShort(sh);
 		short h = (short) ((i255 << 8) + 0xFF);
 		int i = 0xFFFFFFFF + (byte) h;
 		i = (int) h;
@@ -65,8 +68,13 @@ class Test_Byte extends Test_ {
 		b /= 0.01;
 		System.out.println(b);
 		assert (b == 100);
-		System.out.println("Test_Byte OK");
+		System.out.println("Test_Byte OK-Udo");
 
+	}
+
+	private static void checkShort(short sh) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }

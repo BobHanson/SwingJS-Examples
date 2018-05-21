@@ -21,9 +21,9 @@ class Test_Static extends Test_ implements Test_int3, Test_int2, Test_int1 {
 		// JS only
 	}
 	
+	private static byte[] bytearray = {1,2,127};
+	
 	private static boolean b = false;
-	private final static char c0 = new Character('c');
-	private final static char c2 = '2';
 	private static int y;
 	private static char c = 'c';
 	private static int innerI = Test_Class_Inner.i;
@@ -34,7 +34,6 @@ class Test_Static extends Test_ implements Test_int3, Test_int2, Test_int1 {
 
 		System.out.println(innerI);
 		assert(innerI == 5);
-		char cc = c2;
 		int x = 3;
 		y = Test_Boolean.i_;
 		Test_Array.y = 3;
@@ -51,12 +50,17 @@ class Test_Static extends Test_ implements Test_int3, Test_int2, Test_int1 {
 	private void test() {
 		test1();
 	};
+
+	public static byte[] getByteArray() {
+		return new byte[3];
+	}
 	
 	@SuppressWarnings("static-access")
 	public static void main(String[] args) {
 
 		assert(t == null);
 		assert s == "setFromStaticInitializer";
+
 		
 		  /**
 		   * @j2sNative
@@ -76,20 +80,37 @@ class Test_Static extends Test_ implements Test_int3, Test_int2, Test_int1 {
 		  }
 		  assert(args[1] == "2");
 
-		assert (y == 3);
+		assert (y == 3); 
 		b = false;
 		new Test_Static().test();
 		new Test_Static().b ^= true;
+		System.out.println(bytearray[2]);
+		new Test_Static().bytearray[--y]++;		
+		System.out.println(bytearray[2]);
+		assert(bytearray[2] == -128);
+
+		int p = 0;
+		getByteArray()[p++] += (byte) ++p;
+		
+		
+		byte bb = 127;
+		bb++;
+		System.out.println("bb = " + bb); 
+		assert(bb == -128);
+		y++; 
 		new Test_Static().y++;
-		new Test_Static().s += "test1" + c++ + 3 + 5.5f + c + 5.5;
-		assert (s.equals("setFromStaticInitializertest1c35.5d5.5"));
+		new Test_Static().s += "test1" + c++ + 3 + 5.5f + c + 5.5 + y; 
+		assert (s.equals("setFromStaticInitializertest1c35.5d5.54") && b == true);
 
 		int i = 3 + y + (new Test_Static().y++);
 
 		assert (i == 11 && y == 5);
-		i += 3 + y + ++(new Test_Static().y);
-		assert (y == 6 && i == 25);
+		i += 3 + y + ++(new Test_Static().y); 
+		assert (y == 6 && i == 25); 
 
+		Test_Static st = new Test_Static();
+		st.y++;
+		
 		new Test_Static().y--;
 		y--;
 

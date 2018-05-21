@@ -2,8 +2,6 @@ package test;
 
 import java.lang.reflect.Array;
 
-import javajs.util.AU;
-
 class Test_Array extends Test_ {
 
 	
@@ -48,11 +46,7 @@ class Test_Array extends Test_ {
 	  
       Class<?> c = i3.getClass().getComponentType();
       int[] i3b = (int[]) Array.newInstance(c, 5);
-   
-      Class<?> type = i33.getClass().getComponentType();
       
-      Object i33b = AU.arrayCopyObject(i33, 5);
-      assert(i33b.getClass().getName() == "[[I");
       assert(i3.getClass().getComponentType().getName() == "int");
       assert(i33.getClass().getComponentType().getName() == "[I");
       assert(i33.getClass().getComponentType().getComponentType().getName() == "int");

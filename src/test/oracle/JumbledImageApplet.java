@@ -226,9 +226,8 @@ public class JumbledImageApplet extends JApplet {
   	 * @throws MalformedURLException
   	 */
   	private URL pathTo(String file) throws MalformedURLException {
-  		String path = getDocumentBase().toString();
-  		path = PT.rep(path, "/bin/", "/html/examples/oracle/");
-  		path = path.substring(0, path.lastIndexOf("/") + 1) + file;
+  		String path = getCodeBase().toString();
+  		path = path.substring(0, path.lastIndexOf("/") + 1) + "images/" +  file;
   		if (path.startsWith("/"))
   			path = "file://" + path;
   		return new URL(path);
