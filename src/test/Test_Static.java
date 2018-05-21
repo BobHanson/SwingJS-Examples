@@ -51,8 +51,9 @@ class Test_Static extends Test_ implements Test_int3, Test_int2, Test_int1 {
 		test1();
 	};
 
+	private static byte[] bytes = new byte[3]; 
 	public static byte[] getByteArray() {
-		return new byte[3];
+		return bytes;
 	}
 	
 	@SuppressWarnings("static-access")
@@ -85,13 +86,17 @@ class Test_Static extends Test_ implements Test_int3, Test_int2, Test_int1 {
 		new Test_Static().test();
 		new Test_Static().b ^= true;
 		System.out.println(bytearray[2]);
-		new Test_Static().bytearray[--y]++;		
+		
+		new Test_Static().bytearray[--y]++;
+		
+		
 		System.out.println(bytearray[2]);
 		assert(bytearray[2] == -128);
 
 		int p = 0;
 		getByteArray()[p++] += (byte) ++p;
-		
+		System.out.println((new Test_Static()).getByteArray()[2]++);
+		System.out.println((new Test_Static()).getByteArray()[2]);
 		
 		byte bb = 127;
 		bb++;
