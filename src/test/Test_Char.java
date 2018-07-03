@@ -1,5 +1,7 @@
 package test;
 
+import java.util.Hashtable;
+
 class Test_Char extends Test_ {
 
 	int iA = 'A';
@@ -9,8 +11,11 @@ class Test_Char extends Test_ {
 	int iAB = 'A' + c; 
 	String s = "test";
 	
+    public static final char separatorChar = '/';
+
 	public static void main(String[] args) {
 		Test_Char t = new Test_Char();
+		char sep = separatorChar;
 		assert(t.iA == 65);
 		assert(t.c == 'C');
 		assert(t.ci == 'A');
@@ -90,8 +95,8 @@ class Test_Char extends Test_ {
 		s = "testing" + 3;
 		s = "testing" + 3 + cc + 5;
 		s = "testing" + 3 + cc + 5f;
-		s = "testing" + new Double(3);
-		s = "testing" + new Double(3) + cc + 5;
+		s = "testing" + new Double(3); 
+		s = "testing" + new Double(3) + cc + 5; 
 		s = "";
 		s = s + 3;
 		s = s + 3.5;
@@ -119,6 +124,63 @@ class Test_Char extends Test_ {
         assert((byte) b == -1);
         b = 99;
         assert((char) b == 'c');
+        
+        
+        // test enhanced for for switch of Character to char
+        
+        Character[] chars = new Character[] {Character.valueOf('a'), Character.valueOf('o'), Character.valueOf('k') };
+
+        s = "";
+        for (char c1 : chars) {
+        	s += new Character(c1);
+        }
+        System.out.println(s);
+        assert s.equals("aok"); // OK
+
+        char[] chs = new char[] {'a', 'o', 'k' };
+
+        s = "";
+        for (Character c1 : chs) {
+        	s += c1.charValue();
+        }
+        System.out.println(s);
+        assert s.equals("aok"); // OK
+      
+
+        ic = 0;
+        for (char c1 : chars) {
+        	ic += c1;
+        }
+        System.out.println(ic); // OK
+        assert ic == 315;      
+        
+        Hashtable<Character, String> ctos = new Hashtable<>(); 
+        ctos.put('a', "aok");
+        for (char c1 : ctos.keySet()) {
+        	 String aok = ctos.get(c1); 
+        	 System.out.println(aok);
+        	 assert(aok == "aok");
+        }
+        
+                
+
+        // char to int
+        int ctoi = 0;
+        for (int c1 : chs) {
+        	ctoi += c1;
+        }
+        System.out.println(ctoi); 
+        assert ctoi == 315;      
+
+               
+        // Character to int
+        int Ctoi = 0;
+        for (int c1 : chars) {
+        	Ctoi += c1;
+        }
+        System.out.println(Ctoi);
+        assert Ctoi == 315;      
+        
 
         System.out.println("Test_Char OK");
 	}

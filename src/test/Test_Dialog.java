@@ -15,6 +15,7 @@ import java.util.Map;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JColorChooser;
+import javax.swing.JDialog;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -29,6 +30,63 @@ public class Test_Dialog extends JFrame implements PropertyChangeListener {
 	
 	public static Object o = new Object();
 	public static Color c = new Color(1,2,3);
+
+	
+	// @Override
+	public void propertyChange(PropertyChangeEvent event) {
+		Object val = event.getNewValue();
+		String name = event.getPropertyName();
+		System.out.println(name);
+		switch (event.getSource().getClass().getName()) {
+		case "javax.swing.JOptionPane":
+			switch (name) {
+			case "inputValue":
+				onDialogReturn(val);
+				return;
+			case "value":
+				if (val instanceof Integer)
+					onDialogReturn(((Integer) val).intValue());
+				else
+					onDialogReturn(val);
+				return;
+			}
+			break;
+		case "javax.swing.ColorChooserDialog":
+			switch (name) {
+			case "SelectedColor":
+				onDialogReturn(val);
+				return;
+			}
+			break;
+		case "javax.swing.JFileChooser":
+			switch (name) {
+			case "SelectedFile":
+				File file = (File) val;
+				byte[] array = (val == null ? null : /** @j2sNative file._bytes || */ null);
+				onDialogReturn("fileName is '" + file.getName() + "'\n\n" + new String(array));
+				return;
+			}
+			break;
+		}
+		System.out.println(
+				event.getSource().getClass().getName() + " " + event.getPropertyName() + ": " + event.getNewValue());
+	}
+
+	// JSCOmponent.DialogCaller interface
+	public void onDialogReturn(int value) {
+		if (value != Math.floor(value))
+			return; // in JavaScript, this will be NaN
+		System.out.println("int value is " + value);
+	}
+
+	// JSCOmponent.DialogCaller interface
+	public void onDialogReturn(Object value) {
+		if (value instanceof UIResource)
+			return;
+		System.out.println("object value is " + value);
+	}
+
+	
 	
 	public Test_Dialog() {
 		super();
@@ -80,6 +138,8 @@ public class Test_Dialog extends JFrame implements PropertyChangeListener {
 		});
 		this.add(b);
 
+		
+		
 		b = new JButton("FileOpenDialog");
 		b.addActionListener(new ActionListener() {
 
@@ -110,20 +170,6 @@ public class Test_Dialog extends JFrame implements PropertyChangeListener {
 
 	}
 
-	// JSCOmponent.DialogCaller interface
-	public void onDialogReturn(int value) {
-		if (value != Math.floor(value))
-			return; // in JavaScript, this will be NaN
-		System.out.println("int value is " + value);
-	}
-
-	// JSCOmponent.DialogCaller interface
-	public void onDialogReturn(Object value) {
-		if (value instanceof UIResource)
-			return;
-		System.out.println("object value is " + value);
-	}
-
 	public static void main(String[] args) {
 		try {
 			new Test_Dialog();
@@ -133,44 +179,5 @@ public class Test_Dialog extends JFrame implements PropertyChangeListener {
 
 	}
 
-	// @Override
-	public void propertyChange(PropertyChangeEvent event) {
-		Object val = event.getNewValue();
-		String name = event.getPropertyName();
-		System.out.println(name);
-		switch (event.getSource().getClass().getName()) {
-		case "javax.swing.JOptionPane":
-			switch (name) {
-			case "inputValue":
-				onDialogReturn(val);
-				return;
-			case "value":
-				if (val instanceof Integer)
-					onDialogReturn(((Integer) val).intValue());
-				else
-					onDialogReturn(val);
-				return;
-			}
-			break;
-		case "javax.swing.ColorChooserDialog":
-			switch (name) {
-			case "SelectedColor":
-				onDialogReturn(val);
-				return;
-			}
-			break;
-		case "javax.swing.JFileChooser":
-			switch (name) {
-			case "SelectedFile":
-				File file = (File) val;
-				byte[] array = (val == null ? null : /** @j2sNative file._bytes || */ null);
-				onDialogReturn("fileName is '" + file.getName() + "'\n\n" + new String(array));
-				return;
-			}
-			break;
-		}
-		System.out.println(
-				event.getSource().getClass().getName() + " " + event.getPropertyName() + ": " + event.getNewValue());
-	}
 
 }

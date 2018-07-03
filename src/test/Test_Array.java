@@ -47,6 +47,7 @@ class Test_Array extends Test_ {
       Class<?> c = i3.getClass().getComponentType();
       int[] i3b = (int[]) Array.newInstance(c, 5);
       
+ 
       assert(i3.getClass().getComponentType().getName() == "int");
       assert(i33.getClass().getComponentType().getName() == "[I");
       assert(i33.getClass().getComponentType().getComponentType().getName() == "int");
@@ -58,7 +59,16 @@ class Test_Array extends Test_ {
 	  assert((i33 instanceof int[][]));
 	  assert((iType3_ instanceof int[][]));
 	  assert(!(i33 instanceof int[]));
-	  System.out.println("Test_Array OK");
+	  
+	  int[] ii3 = new int[] {1, 2, 3};
+	  ii3[Integer.valueOf(2)] = 1;
+	  int j = ii3[Integer.valueOf(2)];
+	  Integer iI = Integer.valueOf(2);
+	  double[] da = new double[3];
+	  System.out.println(da[iI]);
+	  assert(ii3[2] == 1 &&  j == 1);
+	  
+ 	  System.out.println("Test_Array OK");
   }
 
 }

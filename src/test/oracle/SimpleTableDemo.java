@@ -45,14 +45,38 @@ import java.awt.event.MouseEvent;
 import java.lang.reflect.Method;
 
 import javax.swing.JApplet;
+import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 
+import test.oracle.SimpleTableDemo.SimpleJTable;
+
 public class SimpleTableDemo extends JApplet {
 	
+	public static class SimpleJTable extends JTable {
+
+		public SimpleJTable(Object[][] data, String[] columnNames) {
+			super(data, columnNames);
+		}
+		
+		public Dimension getMinimumSize() {
+			Dimension d =  super.getMinimumSize();
+			System.out.println("g min " +  d);
+			return d;
+		}
+		
+		public void reshape(int x, int y, int w, int h) {
+			
+			
+			System.out.println("reshape " + x + " " + y + " " + w + " " + h + " " + getMinimumSize());
+			super.reshape(x, y, w, h);
+		}
+
+	}
+
 	public void init() {
 		DefaultTableCellRenderer x;
 		createAndShowGUI();
@@ -102,10 +126,10 @@ class SimpleTableDemoPanel extends JPanel {
                               "Vegetarian"};
 
       Object[][] data = {
-    {"Kathy", "Smith",
-     "Snowboarding", new Integer(5), new Boolean(false)},
-    {"John", "Doe",
-     "Rowing", new Integer(3), new Boolean(true)},
+//    {"Kathy", "Smith",
+//     "Snowboarding", new Integer(5), new Boolean(false)},
+//    {"John", "Doe",
+//     "Rowing", new Integer(3), new Boolean(true)},
     {"Sue", "Black",
      "Knitting", new Integer(2), new Boolean(false)},
     {"Jane", "White",
@@ -114,25 +138,23 @@ class SimpleTableDemoPanel extends JPanel {
      "Pool", new Integer(10), new Boolean(false)}
       };
 
-      final JTable table = new JTable(data, columnNames);
+      final JTable table = new SimpleJTable(data, columnNames);
       table.setPreferredScrollableViewportSize(new Dimension(500, 70));
       table.setFillsViewportHeight(true);
-      if (DEBUG) {
           table.addMouseListener(new MouseAdapter() {
               public void mouseClicked(MouseEvent e) {
                   printDebugData(table);
+                  
               }
           });
-      }
 
       //Create the scroll pane and add the table to it.
       JScrollPane scrollPane = new JScrollPane(table);
 
-      //Add the scroll pane to this panel.
       add(scrollPane);
   }
 
-  private void printDebugData(JTable table) {
+  void printDebugData(JTable table) {
       int numRows = table.getRowCount();
       int numCols = table.getColumnCount();
       javax.swing.table.TableModel model = table.getModel();
@@ -145,7 +167,7 @@ class SimpleTableDemoPanel extends JPanel {
           }
           System.out.println();
       }
-      System.out.println("--------------------------");
+      System.out.println("--------------------------" + table.getHeight());
   }
   
 }

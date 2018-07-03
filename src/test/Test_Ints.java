@@ -13,6 +13,7 @@ public class Test_Ints extends Test_ {
 	};
 
 	public static void main(String[] args) {
+		int i3 = new Integer("3");
 		new Test_Ints();
 		new Test_Ints(3,5,6);
 		new Test_Ints(3.5f,5.5f,6.5f);

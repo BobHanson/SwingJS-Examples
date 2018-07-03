@@ -9,10 +9,13 @@ import java.awt.dnd.DropTargetDragEvent;
 import java.awt.dnd.DropTargetDropEvent;
 import java.awt.dnd.DropTargetEvent;
 import java.awt.dnd.DropTargetListener;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
 import java.util.List;
 
 import javax.swing.JApplet;
+import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -34,6 +37,21 @@ public class Test_Applet_DropFile extends JApplet implements DropTargetListener 
 		fileName.setText("drag-drop a file into this applet");
 		getContentPane().add(fileName, BorderLayout.NORTH);
 		getContentPane().add(fileDataPane, BorderLayout.CENTER);
+		JCheckBox b = new JCheckBox("testing");
+		b.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				/**
+				 * @j2sNative
+				 * 
+				 * alert("OK");
+				 */
+				
+			}
+			
+		});
+		getContentPane().add(b, BorderLayout.SOUTH);
 		target = new DropTarget(fileData, this);
 	}
 
@@ -82,7 +100,7 @@ public class Test_Applet_DropFile extends JApplet implements DropTargetListener 
 	private byte[] getDroppedFileBytes(File file) {
 		/**
 		 * @j2sNative
-		 * return file.bytes;
+		 * return file._bytes;
 		 */
 		{
 			return null;

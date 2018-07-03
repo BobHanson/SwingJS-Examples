@@ -49,6 +49,9 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.io.File;
 
 public class ColorEditor extends AbstractCellEditor
                          implements TableCellEditor,
@@ -58,6 +61,7 @@ public class ColorEditor extends AbstractCellEditor
     JColorChooser colorChooser;
     JDialog dialog;
     protected static final String EDIT = "edit";
+    protected static final String CANCEL = "cancel";
 
     public ColorEditor() {
         //Set up the editor (from the table's point of view),
@@ -76,7 +80,7 @@ public class ColorEditor extends AbstractCellEditor
                                         true,  //modal
                                         colorChooser,
                                         this,  //OK button handler
-                                        null); //no CANCEL button handler
+                                        this); //CANCEL button handler
     }
 
     /**
@@ -84,18 +88,22 @@ public class ColorEditor extends AbstractCellEditor
      * the dialog's OK button.
      */
     public void actionPerformed(ActionEvent e) {
-        if (EDIT.equals(e.getActionCommand())) {
+    	String cmd = e.getActionCommand();
+    	System.out.println(cmd + " Pressed");
+        if (EDIT.equals(cmd)) {
             //The user has clicked the cell, so
             //bring up the dialog.
             button.setBackground(currentColor);
             colorChooser.setColor(currentColor);
             dialog.setVisible(true);
-
             //Make the renderer reappear.
+            if (/**@j2sNative false && */true)
+            	fireEditingStopped();
+        } else if (CANCEL.equals(cmd)) {
             fireEditingStopped();
-
-        } else { //User pressed dialog's "OK" button.
+        } else if ("OK".equals(cmd)){
             currentColor = colorChooser.getColor();
+            fireEditingStopped();
         }
     }
 
@@ -113,5 +121,6 @@ public class ColorEditor extends AbstractCellEditor
         currentColor = (Color)value;
         return button;
     }
+
 }
 

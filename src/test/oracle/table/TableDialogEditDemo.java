@@ -42,9 +42,13 @@ package test.oracle.table;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.JApplet;
+import javax.swing.JCheckBox;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -115,6 +119,16 @@ class TableDialogEditDemoPane extends JPanel {
 
         //Add the scroll pane to this panel.
         add(scrollPane);
+        //Add the scroll pane to this panel.
+        JCheckBox chk = new JCheckBox();
+        chk.addMouseListener(new MouseAdapter() {
+      	  public void mousePressed(MouseEvent e) {
+      		  System.out.println(e);
+      	  }
+        });
+        
+        add(chk);
+
     }
 
     class MyTableModel extends AbstractTableModel {
@@ -173,20 +187,15 @@ class TableDialogEditDemoPane extends JPanel {
         }
 
         public void setValueAt(Object value, int row, int col) {
-            if (DEBUG) {
                 System.out.println("Setting value at " + row + "," + col
                                    + " to " + value
                                    + " (an instance of "
                                    + value.getClass() + ")");
-            }
 
             data[row][col] = value;
             fireTableCellUpdated(row, col);
-
-            if (DEBUG) {
                 System.out.println("New value of data:");
                 printDebugData();
-            }
         }
 
         private void printDebugData() {
