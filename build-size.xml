@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<!--
+ BH 2018.07.20
+ 
+ unpack JavaScript version of the JVM into site/
+ 
+-->
+
+<project name="examples" default="tosite" basedir="."
+ xmlns:if="ant:if"
+    xmlns:unless="ant:unless">
+	
+  <target name="tosite">
+  	
+  	<!-- inputs directories -->
+    <property name="swingjsDir" value="swingjs"/>
+  	
+ 	<!-- inputs zip files -->
+  	<property name="swingjs.zip" value="${swingjsDir}/SwingJS-site.zip" />
+
+
+	<!-- output directories -->
+  	<property name="site" value="site"/>
+  	<property name="j2sDir" value="${site}/swingjs/j2s"/>
+
+    <!-- SwingJS -->
+
+  	<echo> Unzipping ${swingjs.zip} into ${site} </echo>
+  	<unzip src="${swingjs.zip}" dest="${site}/" overwrite="true"/>  	
+
+ 	<!-- resources
+
+  	<echo> Copying ${resourceDir} files into ${j2sDir} </echo>
+  	<copy todir="${j2sDir}">
+      <fileset dir="${resourceDir}">
+      	<include name="**"/>
+  	</fileset>
+    </copy>
+    -->
+   
+  	
+</target>
+</project>

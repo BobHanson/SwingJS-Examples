@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!--
+ BH 2018.07.20
+ 
+ create the demo site.zip
+ 
+-->
+<project name="examples" default="zipsite" basedir=".">
+	
+  <target name="zipsite">
+  	
+  	<echo> Creating site.zip </echo>
+   	<zip destfile="./site.zip" basedir="site" />
+   
+  	
+</target>
+</project>
