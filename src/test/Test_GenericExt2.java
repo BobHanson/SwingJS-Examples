@@ -1,14 +1,14 @@
 package test;
 
-import javajs.util.Lst;
+import java.util.ArrayList;
 
 public class Test_GenericExt2 extends Test_GenericExt_K<Test_Generic_Comp> {
 
 	public static void main(String[] args) {
     	//no subclassing here new Test_GenericExt<Test_Generic_Comp2>();
     	
-		Lst<String> lst = new Lst<String>();
-		lst.addLast("String");
+		ArrayList<String> lst = new ArrayList<String>();
+		lst.add("String");
     	Test_GenericExt_K<Test_Generic_Comp> t = new Test_GenericExt2();
     	t.check(null, null);
     		  	

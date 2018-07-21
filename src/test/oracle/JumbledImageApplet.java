@@ -48,8 +48,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Random;
 
-import javajs.util.PT;
-
 import javax.imageio.ImageIO;
 import javax.swing.JApplet;
 import javax.swing.JButton;
