@@ -80,6 +80,18 @@ public class Person {
 
 	}
 
+	public String getEmail() {
+		return eMail;
+	}
+	
+	public String getAddress() {
+		return address;
+	}
+	
+	public String getPhone() {
+		return phone;
+	}
+	
 	public String getGivenName() {
 		return givenName;
 	}
