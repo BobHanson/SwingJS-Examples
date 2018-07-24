@@ -4,9 +4,11 @@
  
  unpack JavaScript version of the JVM into site/
  
+ run this ANT task from the swingjs directory
+ 
 -->
 
-<project name="examples" default="tosite" basedir="."
+<project name="examples" default="tosite" basedir=".."
  xmlns:if="ant:if"
     xmlns:unless="ant:unless">
 	

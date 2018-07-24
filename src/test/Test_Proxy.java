@@ -10,13 +10,25 @@ class Test_Proxy extends Test_ implements InvocationHandler, Runnable, MouseList
 	
 	private static Runnable proxy;
 	
+	private static Test_Proxy proxy2;
+	
 	public static void main(String[] args) {
         proxy = (Runnable) Proxy.newProxyInstance( test.Test_Proxy.class.getClassLoader(),
                 new Class<?>[] { Runnable.class, MouseListener.class }, new Test_Proxy());
 		proxy.run();
+        proxy2 = (Test_Proxy) Proxy.newProxyInstance( test.Test_Proxy.class.getClassLoader(),
+                new Class<?>[] { Test_Proxy.class 	}, new Test_Proxy());
+		proxy2.test(3);
 		System.out.println("Test_Proxy OK");
 	}
+
+	int itest;
 	
+	private void test(int i) {
+		System.out.println("itest = " + i);
+		itest = i;
+	}
+
 	private boolean isOK;
 
 	@Override
@@ -24,7 +36,10 @@ class Test_Proxy extends Test_ implements InvocationHandler, Runnable, MouseList
 		Test_Proxy p = new Test_Proxy();
 		System.out.println(Test_Proxy.class);
 		method.invoke(p, args);
-		assert(p.isOK);
+		if (args.length == 0)
+			assert(p.isOK);
+		else
+			assert(p.itest == 3);
 		return null;
 	}
 

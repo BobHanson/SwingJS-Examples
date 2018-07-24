@@ -1,9 +1,16 @@
 package test;
 
+
 public class Test_String extends Test_ {
 	
+
   public static void main(String[] args) {
 
+	  assert ("test".compareToIgnoreCase("Test") == 0);
+	  assert ("test".compareToIgnoreCase("Testing") < 0);
+	  assert ("test".compareToIgnoreCase("Sest") > 0);
+	  assert (String.CASE_INSENSITIVE_ORDER.compare("test",  "Sest") > 0);
+	  
 	  assert("test".length() == 4);
 	  CharSequence cs = "test";
 	  assert(cs.length() == 4);

@@ -1,10 +1,10 @@
 package test;
 
-import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Field;
 
 class Test_Reflect extends Test_ {
 
-	String s;
+	public String s = "field s";
 	
 	public void test(char i, String s) {
 		System.out.println("testchar " + i);assert(s.equals("char"));
@@ -69,12 +69,11 @@ test.Test_Reflect.getMethod$S$ClassA ("test", [String, Clazz.arrayType('float[][
 
 	public static void main(String[] args) {
 		Test_Reflect tr = new Test_Reflect();
-		try {
-			// Field is not implemented
-			
+  		  // Field is not implemented
 //			Field f = Test_Reflect.class.getDeclaredField("s");
 //			System.out.println(f.getDeclaringClass());
 			
+		try {
 			Test_Reflect.class.getMethod("test", char.class, String.class).invoke(tr, (char)75, "char");
 			Test_Reflect.class.getMethod("test", Character.TYPE, String.class).invoke(tr, (char)75, "char");
 
@@ -101,28 +100,27 @@ test.Test_Reflect.getMethod$S$ClassA ("test", [String, Clazz.arrayType('float[][
 			Test_Reflect.class.getMethod("test", String.class, String[][].class).invoke(tr, "String[][]", ss);
 			Test_Reflect.class.getMethod("test", String.class, float[][].class).invoke(tr, "float[][]", ff);
 
-
-			System.out.println("Test_Reflect OK");
-			
-		} catch (IllegalAccessException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IllegalArgumentException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (InvocationTargetException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (NoSuchMethodException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SecurityException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-//		} catch (NoSuchFieldException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
+			try {
+				// intentional failure to invoke
+				Test_Reflect.class.getMethod("test", String.class, int[][][][].class).invoke(tr, "int[][][][]", ii[0]);
+				assert(false);
+			} catch (Exception e) {
+				assert(e instanceof NoSuchMethodException);
+			}
+		} catch (Throwable e) {
+			assert(false);
 		}
+		Test_Reflect t = new Test_Reflect();
+		Class<? extends Test_Reflect> f = t.getClass();
+		Field[] fields = f.getDeclaredFields();
+		for (int i = 0; i < fields.length; i++)
+			try {
+				System.out.println("field " + i + ": " + fields[i].getName() + " " + fields[i].get(t));
+			} catch (IllegalArgumentException | IllegalAccessException e) {
+				e.printStackTrace();
+			}
+		
+		System.out.println("Test_Reflect OK");				
 	}
 
 }

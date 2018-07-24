@@ -9,18 +9,21 @@ class Test_Char extends Test_ {
 	char ci = 65; 
 	byte bAA = 'A'; 
 	int iAB = 'A' + c; 
-	String s = "test";
+	static String s = "test";
 	
     public static final char separatorChar = '/';
 
 	public static void main(String[] args) {
+		
+		int[] iii = new int[3];
+		iii[1] = s.charAt(3) | 5; 
 		Test_Char t = new Test_Char();
 		char sep = separatorChar;
 		assert(t.iA == 65);
 		assert(t.c == 'C');
 		assert(t.ci == 'A');
 		assert(t.bAA == 65);
-		assert(t.iAB == 65 + 67);		
+		assert(t.iAB == 65 + 67); 		
 		Character k = new Character('K');
 		assert(k == (char) 75);
 		

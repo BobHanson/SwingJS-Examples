@@ -69,11 +69,15 @@ abstract class Test_ {
 		  Test_Instance.main(args);
 		  Test_Interface.main(args);
 		  Test_Interface2.main(args);
+		  Test_Intern.main(args);
 		  Test_Ints.main(args);
+		  Test_J8_Stream.main(args);
+		  Test_Java8.main(args);
 		  Test_Map.main(args);
 		  Test_Native.main(args);
 		  Test_NoAssert.main(args);
 		  Test_NoHeadless_1.main(args);
+		  Test_Or.main(args);
 		  Test_Precision.main(args);
 		  Test_Print.main(args);
 		  Test_Printf.main(args);
@@ -81,6 +85,7 @@ abstract class Test_ {
 		  Test_Reflect.main(args);
 		  Test_Reserved.main(args);
 		  Test_Resource.main(args);
+		  Test_Sort.main(args);
 		  Test_Static.main(args);
 		  Test_String.main(args);
 		  Test_Var.main(args);

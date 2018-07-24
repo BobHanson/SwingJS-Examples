@@ -10,7 +10,7 @@
   <target name="zipsite">
   	
   	<echo> Creating site.zip </echo>
-   	<zip destfile="./site.zip" basedir="site" />
+   	<zip destfile="dist/site.zip" basedir="site" />
    
   	
 </target>

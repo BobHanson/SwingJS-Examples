@@ -2,7 +2,7 @@ package test;
 
 import java.io.FileWriter;
 
-public class Test_Write extends Test_ {
+public class Test_Write0 extends Test_ {
 
 	public static void main(String[] args) {
 		try {
