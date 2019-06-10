@@ -2,7 +2,7 @@ package com.falstad.circuit;
 
 import java.util.StringTokenizer;
 
-import a2s.Checkbox;
+import java.awt.Checkbox;
 
     class JKFlipFlopElm extends ChipElm {
     	final int FLAG_RESET = 2;

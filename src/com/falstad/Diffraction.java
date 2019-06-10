@@ -69,14 +69,14 @@ import java.text.NumberFormat;
 import java.util.Random;
 import java.util.Vector;
 
-import a2s.Applet;
-import a2s.Button;
-import a2s.Canvas;
-import a2s.Checkbox;
-import a2s.Choice;
-import a2s.Frame;
-import a2s.Label;
-import a2s.Scrollbar;
+import java.applet.Applet;
+import java.awt.Button;
+import java.awt.Canvas;
+import java.awt.Checkbox;
+import java.awt.Choice;
+import java.awt.Frame;
+import java.awt.Label;
+import java.awt.Scrollbar;
 
 class DiffractionCanvas extends Canvas {
 	static DiffractionFrame pg;
@@ -96,7 +96,7 @@ class DiffractionCanvas extends Canvas {
 	}
 
 	@Override
-	public void paintComponent(Graphics g) {
+	public void paint(Graphics g) {
 		pg.updateDiffraction(g);
 	}
 }
@@ -350,7 +350,7 @@ class DiffractionFrame extends Frame implements ComponentListener,
 			handleResize();
 			Dimension x = getSize();
 			Dimension screen = getToolkit().getScreenSize();
-			setLocation((screen.width - x.width) / 2, (screen.height - x.height) / 2);
+			setLocation((screen.width - x.width) / 2, Math.max((screen.height - x.height) / 2, 0));
 			setVisible(true);
 		} else {
 			setVisible(false);
@@ -757,6 +757,7 @@ class DiffractionFrame extends Frame implements ComponentListener,
 				g.drawString(cs, fullWinSize.width - (10 + sw), fullWinSize.height - 10);
 			}
 		}
+		g.dispose();
 		realg.drawImage(dbimage, 0, 0, this);
 	}
 
@@ -890,15 +891,6 @@ class DiffractionFrame extends Frame implements ComponentListener,
 		if (e.getSource() != sizeCheck)
 			functionChanged = true;
 		if (e.getSource() == apertureChooser) {
-			/**
-			 * @j2sNative
-			 * 
-			 *            //debugger;
-			 * 
-			 */
-			{
-			}
-
 			aperture = (Aperture) apertureList.elementAt(apertureChooser
 					.getSelectedIndex());
 			brightnessBar.setValue(aperture.defaultBrightness());

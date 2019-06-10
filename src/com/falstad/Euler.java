@@ -33,14 +33,14 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
-import a2s.Applet;
+import java.applet.Applet;
 
-import a2s.Canvas;
-import a2s.Checkbox;
-import a2s.Choice;
-import a2s.Frame;
-import a2s.Label;
-import a2s.Scrollbar;
+import java.awt.Canvas;
+import java.awt.Checkbox;
+import java.awt.Choice;
+import java.awt.Frame;
+import java.awt.Label;
+import java.awt.Scrollbar;
 
 //web_Ready
 //web_AppletName= Euler's Equation
@@ -62,7 +62,7 @@ class EulerCanvas extends Canvas {
     public void update(Graphics g) {
 	pg.updateEuler(g);
     }
-    public void paintComponent(Graphics g) {
+    public void paint(Graphics g) {
 	pg.updateEuler(g);
     }
 };
@@ -269,7 +269,7 @@ class EulerFrame extends Frame
             handleResize();
             Dimension x = getSize();
             Dimension screen = getToolkit().getScreenSize();
-            setLocation((screen.width - x.width) / 2, (screen.height - x.height) / 2);
+            setLocation((screen.width - x.width) / 2, Math.max((screen.height - x.height) / 2, 0));
             setVisible(true);
         } else {
             setVisible(false);

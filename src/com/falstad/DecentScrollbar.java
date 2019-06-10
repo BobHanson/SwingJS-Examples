@@ -1,7 +1,7 @@
 package com.falstad;
 
-import a2s.Canvas;
-import a2s.Scrollbar;
+import java.awt.Canvas;
+import java.awt.Scrollbar;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;

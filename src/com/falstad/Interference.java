@@ -54,14 +54,14 @@ import java.text.NumberFormat;
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.SourceDataLine;
 
-import a2s.Applet;
+import java.applet.Applet;
 
 import javajs.util.JSAudioThread;
-import a2s.Canvas;
-import a2s.Checkbox;
-import a2s.Frame;
-import a2s.Label;
-import a2s.Scrollbar;
+import java.awt.Canvas;
+import java.awt.Checkbox;
+import java.awt.Frame;
+import java.awt.Label;
+import java.awt.Scrollbar;
 
 class InterferenceCanvas extends Canvas {
 	InterferenceFrame pg;
@@ -81,7 +81,7 @@ class InterferenceCanvas extends Canvas {
 	}
 
 	@Override
-	public void paintComponent(Graphics g) {
+	public void paint(Graphics g) {
 		pg.updateInterference(g);
 	}
 }
@@ -305,7 +305,7 @@ class InterferenceFrame extends Frame implements ComponentListener,
 			handleResize();
 			Dimension x = getSize();
 			Dimension screen = getToolkit().getScreenSize();
-			setLocation((screen.width - x.width) / 2, (screen.height - x.height) / 2);
+			setLocation((screen.width - x.width) / 2, Math.max((screen.height - x.height) / 2, 0));
 			setVisible(true);
 		} else {
 			setVisible(false);

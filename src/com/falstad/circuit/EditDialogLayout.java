@@ -7,10 +7,10 @@ import java.awt.Insets;
 import java.awt.LayoutManager;
 import java.awt.event.*;
 
-import a2s.Button;
-import a2s.Choice;
-import a2s.Label;
-import a2s.Scrollbar;
+import java.awt.Button;
+import java.awt.Choice;
+import java.awt.Label;
+import java.awt.Scrollbar;
 
 class EditDialogLayout implements LayoutManager {
     public EditDialogLayout() {}

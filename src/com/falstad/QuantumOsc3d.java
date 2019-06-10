@@ -32,7 +32,7 @@ package com.falstad;
 // Added 'finished' boolean/state machine to itemState & adjustmentListener and at the end of init
 //		--> otherwise it calls items before they exist
 
-import a2s.Applet;
+import java.applet.Applet;
 
 import com.falstad.Complex;
 
@@ -64,17 +64,17 @@ import java.lang.reflect.Method;
 import java.util.Random;
 import java.util.Vector;
 
-import a2s.Button;
-import a2s.Canvas;
-import a2s.Checkbox;
-import a2s.CheckboxMenuItem;
-import a2s.Choice;
-import a2s.Frame;
-import a2s.Label;
-import a2s.Menu;
-import a2s.MenuBar;
-import a2s.MenuItem;
-import a2s.Scrollbar;
+import java.awt.Button;
+import java.awt.Canvas;
+import java.awt.Checkbox;
+import java.awt.CheckboxMenuItem;
+import java.awt.Choice;
+import java.awt.Frame;
+import java.awt.Label;
+import java.awt.Menu;
+import java.awt.MenuBar;
+import java.awt.MenuItem;
+import java.awt.Scrollbar;
 
 class QuantumOsc3dCanvas extends Canvas {
 	QuantumOsc3dFrame pg;
@@ -91,7 +91,7 @@ class QuantumOsc3dCanvas extends Canvas {
 		pg.updateQuantumOsc3d(g);
 	}
 
-	public void paintComponent(Graphics g) {
+	public void paint(Graphics g) {
 		pg.updateQuantumOsc3d(g);
 	}
 };
@@ -565,7 +565,7 @@ class QuantumOsc3dFrame extends Frame implements ComponentListener,
 			Dimension x = getSize();
 			Dimension screen = getToolkit().getScreenSize();
 			setLocation((screen.width - x.width) / 2,
-					(screen.height - x.height) / 2);
+					Math.max((screen.height - x.height) / 2, 0));
 			setVisible(true);
 		} else {
 			setVisible(false);

@@ -462,7 +462,7 @@ implements ComponentListener, ActionListener, AdjustmentListener,
 		Dimension x = getSize();
 		Dimension screen = getToolkit().getScreenSize();
 		setLocation((screen.width - x.width) / 2,
-				(screen.height - x.height) / 2);
+				Math.max((screen.height - x.height) / 2,0));
 		setVisible(true);
 	} else {
 		setVisible(false);

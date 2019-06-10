@@ -612,7 +612,7 @@ class AtomViewerFrame extends Frame implements ComponentListener,
 		handleResize();
 		Dimension x = getSize();
 		Dimension screen = getToolkit().getScreenSize();
-		setLocation((screen.width - x.width) / 2, (screen.height - x.height) / 2);
+		setLocation((screen.width - x.width) / 2, Math.max((screen.height - x.height) / 2,0));
 		setVisible(true);
 		setupMenus();
 		finished = true;

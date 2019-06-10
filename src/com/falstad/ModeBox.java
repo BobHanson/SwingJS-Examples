@@ -54,15 +54,15 @@ import java.awt.event.MouseMotionListener;
 import java.awt.image.MemoryImageSource;
 import java.util.Random;
 
-import a2s.Applet;
+import java.applet.Applet;
 
-import a2s.Button;
-import a2s.Canvas;
-import a2s.Checkbox;
-import a2s.Choice;
-import a2s.Frame;
-import a2s.Label;
-import a2s.Scrollbar;
+import java.awt.Button;
+import java.awt.Canvas;
+import java.awt.Checkbox;
+import java.awt.Choice;
+import java.awt.Frame;
+import java.awt.Label;
+import java.awt.Scrollbar;
 
 // needs annotation defining all changes implemented for JavaScript
 
@@ -86,7 +86,7 @@ class ModeBoxCanvas extends Canvas {
 	}
 
 	@Override
-	public void paintComponent(Graphics g)  {
+	public void paint(Graphics g)  {
 		pg.updateModeBox(g);
 	}
 }
@@ -401,7 +401,7 @@ class ModeBoxFrame extends Frame implements ComponentListener, ActionListener,
 			Dimension x = getSize();
 			Dimension screen = getToolkit().getScreenSize();
 			setLocation((screen.width - x.width) / 2,
-					(screen.height - x.height) / 2);
+					Math.max((screen.height - x.height) / 2, 0));
 			show();
 		} else {
 			hide();
@@ -623,17 +623,10 @@ class ModeBoxFrame extends Frame implements ComponentListener, ActionListener,
 
 	public void updateModeBox(Graphics realg) {
 		
-		
-		/**
-		 * @j2sNative
-		 *  document.title = System.currentTimeMillis() - (this.lastTime || 0);
-		 *  this.lastTime = System.currentTimeMillis();
-		 */
-		{
-			System.out.println(System.currentTimeMillis() - this.lastTime);
-			this.lastTime = System.currentTimeMillis();
-			
-		}
+		long t = System.currentTimeMillis();
+		long dt = t = lastTime;
+		//System.out.println(dt);
+		this.lastTime = System.currentTimeMillis();
 		
 		Graphics g = null;
 		if (winSize == null || winSize.width == 0 || winSize.height == 0)

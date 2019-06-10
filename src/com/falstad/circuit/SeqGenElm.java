@@ -2,7 +2,7 @@ package com.falstad.circuit;
 
 import java.util.StringTokenizer;
 
-import a2s.Checkbox;
+import java.awt.Checkbox;
 
 // contributed by Edward Calver
 

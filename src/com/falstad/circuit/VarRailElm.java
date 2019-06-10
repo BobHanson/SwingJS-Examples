@@ -3,8 +3,8 @@ package com.falstad.circuit;
 
 import java.util.StringTokenizer;
 
-import a2s.Label;
-import a2s.Scrollbar;
+import java.awt.Label;
+import java.awt.Scrollbar;
 
     class VarRailElm extends RailElm {
 	Scrollbar slider;

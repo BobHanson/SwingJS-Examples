@@ -5,9 +5,9 @@ import java.awt.Event;
 import java.awt.Point;
 import java.awt.event.*;
 
-import a2s.Button;
-import a2s.Dialog;
-import a2s.TextArea;
+import java.awt.Button;
+import java.awt.Dialog;
+import java.awt.TextArea;
 
 
 

@@ -17,9 +17,9 @@ package com.falstad;
 //
 // Changes include:
 //
-// import javax.swing.applet.Applet --> a2s.Applet
+// import javax.swing.applet.Applet --> java.applet
 // 
-// import java.awt.[Button, Canvas, Checkbox, Choice, Frame, Label, Scrollbar, TextArea, Dialog] --> a2s.*
+// import java.awt.[Button, Canvas, Checkbox, Choice, Frame, Label, Scrollbar, TextArea, Dialog] --> java.awt.*
 //
 // RippleFrame.paint --> RippleFrame.paintComponent
 //
@@ -88,17 +88,17 @@ import java.util.Vector;
 import javax.swing.SwingConstants;
 import javax.swing.WindowConstants;
 
-import a2s.Applet;
+import java.applet.Applet;
 
-import a2s.Button;
-import a2s.Canvas;
-import a2s.Checkbox;
-import a2s.Choice;
-import a2s.Frame;
-import a2s.Label;
-import a2s.Scrollbar;
-import a2s.TextArea;
-import a2s.Dialog;
+import java.awt.Button;
+import java.awt.Canvas;
+import java.awt.Checkbox;
+import java.awt.Choice;
+import java.awt.Frame;
+import java.awt.Label;
+import java.awt.Scrollbar;
+import java.awt.TextArea;
+import java.awt.Dialog;
 
 
 class RippleCanvas extends Canvas {
@@ -119,7 +119,7 @@ class RippleCanvas extends Canvas {
 	}
 
 	@Override
-	public void paintComponent(Graphics g) {
+	public void paint(Graphics g) {
 		pg.updateRipple(g);
 	}
 }
@@ -391,11 +391,15 @@ class RippleFrame extends Frame implements ComponentListener, ActionListener,
 		// and ImportDialog will never show, either, as its parent frame (RippleFrame)
 		// is hiding.
 		super("Ripple Tank Applet v1.7f");
-		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+		int c = WindowConstants.DISPOSE_ON_CLOSE;
+	
 		/**
-		 * @j2sNative
-		 *            this.defaultSpeed = 6; this.defaultResolution = 110;
-		 *            this.startupTime = 1500; this.resolutionCutoff = 200;
+		 * javax.swing option setDefaultCloseOperation(int)
+		 * 
+		 * 
+		 * @j2sNative this.setDefaultCloseOperation$I(c); this.defaultSpeed = 6;
+		 *            this.defaultResolution = 110; this.startupTime = 1500;
+		 *            this.resolutionCutoff = 200;
 		 * 
 		 * 
 		 */
@@ -662,7 +666,7 @@ class RippleFrame extends Frame implements ComponentListener, ActionListener,
 			handleResize();
 			Dimension x = getSize();
 			Dimension screen = getToolkit().getScreenSize();
-			setLocation((screen.width - x.width) / 2, (screen.height - x.height) / 2);
+			setLocation((screen.width - x.width) / 2, Math.max((screen.height - x.height) / 2, 0));
 			setVisible(true);
 		} else {
 			setVisible(false);
@@ -2280,7 +2284,13 @@ class RippleFrame extends Frame implements ComponentListener, ActionListener,
 
 		ImportDialog(RippleFrame f, String str) {
 			super(f, (str.length() > 0) ? "Export" : "Import", false);
-			setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+			int c = WindowConstants.DISPOSE_ON_CLOSE;
+			/**
+			 * javax.swing option
+			 * 
+			 * @j2sNative this.setDefaultCloseOperation$I(c);
+			 */
+			{}
 			rframe = f;
 			setLayout(new ImportDialogLayout());
 			// add(text = new TextArea(str, 10, 60, TextArea.SCROLLBARS_BOTH));

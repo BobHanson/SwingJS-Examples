@@ -1,8 +1,5 @@
 package com.falstad.circuit;
 
-import javajs.J2SIgnoreImport;
-
-@J2SIgnoreImport({ImportExportClipboardDialog.class, ImportExportFileDialog.class})
 public class ImportExportDialogFactory {
 	public static ImportExportDialog Create(CirSim f,
 			ImportExportDialog.Action type) {

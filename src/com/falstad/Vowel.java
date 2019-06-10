@@ -46,25 +46,25 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.DataLine;
 import javax.sound.sampled.SourceDataLine;
 
-import a2s.Applet;
+import java.applet.Applet;
 
 import com.falstad.Complex;
 import com.falstad.FFT;
 
 import javajs.util.JSAudioThread;
-import a2s.Button;
-import a2s.Canvas;
-import a2s.Checkbox;
-import a2s.CheckboxMenuItem;
-import a2s.Choice;
-import a2s.Dialog;
-import a2s.Frame;
-import a2s.Label;
-import a2s.Menu;
-import a2s.MenuBar;
-import a2s.MenuItem;
-import a2s.Scrollbar;
-import a2s.TextArea;
+import java.awt.Button;
+import java.awt.Canvas;
+import java.awt.Checkbox;
+import java.awt.CheckboxMenuItem;
+import java.awt.Choice;
+import java.awt.Dialog;
+import java.awt.Frame;
+import java.awt.Label;
+import java.awt.Menu;
+import java.awt.MenuBar;
+import java.awt.MenuItem;
+import java.awt.Scrollbar;
+import java.awt.TextArea;
 
 /*
  * SwingJS note -- BH
@@ -485,7 +485,7 @@ class VowelFrame extends Frame implements ComponentListener, ActionListener,
 			handleResize();
 			Dimension x = getSize();
 			Dimension screen = getToolkit().getScreenSize();
-			setLocation((screen.width - x.width) / 2, (screen.height - x.height) / 2);
+			setLocation((screen.width - x.width) / 2, Math.max((screen.height - x.height) / 2, 0));
 			setVisible(true);
 		} else {
 			setVisible(false);
@@ -3693,7 +3693,7 @@ class VowelFrame extends Frame implements ComponentListener, ActionListener,
 		}
 
 		@Override
-		public void paintComponent(Graphics g) {
+		public void paint(Graphics g) {
 			pg.updateVowel(g);
 		}
 	};

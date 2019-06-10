@@ -26,10 +26,10 @@ import java.awt.event.MouseMotionListener;
 import java.text.NumberFormat;
 import java.util.Random;
 
-import a2s.Applet;
+import java.applet.Applet;
 
-import a2s.Canvas;
-import a2s.Button;
+import java.awt.Canvas;
+import java.awt.Button;
 
 //web_Ready
 //web_AppletName= DotProduct
@@ -52,8 +52,7 @@ class DotProductCanvas extends Canvas {
  public void update(Graphics g) {
 	pg.updateDotProduct(g);
  }
- public void paintComponent(Graphics g) {
-	 super.paintComponent(g);
+ public void paint(Graphics g) {
 	pg.updateDotProduct(g);
  }
 };

@@ -27,17 +27,17 @@ import java.awt.event.MouseMotionListener;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 
-import a2s.Applet;
+import java.applet.Applet;
 
-import a2s.Button;
-import a2s.Canvas;
-import a2s.Checkbox;
-import a2s.Choice;
-import a2s.Frame;
-import a2s.Label;
-import a2s.Scrollbar;
-import a2s.TextArea;
-import a2s.Dialog;
+import java.awt.Button;
+import java.awt.Canvas;
+import java.awt.Checkbox;
+import java.awt.Choice;
+import java.awt.Frame;
+import java.awt.Label;
+import java.awt.Scrollbar;
+import java.awt.TextArea;
+import java.awt.Dialog;
 
 //web_Ready
 //web_AppletName= Dispersion
@@ -59,8 +59,7 @@ class DispersionCanvas extends Canvas {
     public void update(Graphics g) {
 	pg.updateDispersion(g);
     }
-    public void paintComponent(Graphics g) {
-	super.paintComponent(g);
+    public void paint(Graphics g) {
 	pg.updateDispersion(g);
     }
 };

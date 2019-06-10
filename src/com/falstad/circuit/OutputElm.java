@@ -6,7 +6,7 @@ import java.awt.Graphics;
 import java.awt.Point;
 import java.util.StringTokenizer;
 
-import a2s.Checkbox;
+import java.awt.Checkbox;
 
     class OutputElm extends CircuitElm {
 	final int FLAG_VALUE = 1;

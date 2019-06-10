@@ -7,8 +7,8 @@ import java.awt.event.AdjustmentEvent;
 import java.awt.event.AdjustmentListener;
 import java.util.StringTokenizer;
 
-import a2s.Label;
-import a2s.Scrollbar;
+import java.awt.Label;
+import java.awt.Scrollbar;
 
 class PotElm extends CircuitElm implements AdjustmentListener {
     double position, maxResistance, resistance1, resistance2;

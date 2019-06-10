@@ -6,7 +6,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 
-import javajs.J2SIgnoreImport;
 import javajs.api.BytePoster;
 import javajs.api.GenericOutputChannel;
 import javajs.api.js.J2SObjectInterface;
@@ -44,7 +43,6 @@ import javajs.api.js.J2SObjectInterface;
  *  
  */
 
-@J2SIgnoreImport({ java.io.FileOutputStream.class })
 public class OC extends OutputStream implements GenericOutputChannel {
  
   private BytePoster bytePoster; // only necessary for writing to http:// or https://
@@ -62,6 +60,21 @@ public class OC extends OutputStream implements GenericOutputChannel {
 	private byte[] bytes; // preset bytes; output only
   
 	public boolean bigEndian = true;
+
+	private boolean isTemp;
+	
+	/**
+	 * Setting isTemp=true informs OC that this is a temporary file 
+	 * and not to send it to the user as a "download". Instead, the calling
+	 * class can use .toByteArray() to retrieve the byte[] result.
+	 * 
+	 * @param tf
+	 */
+	public void setTemp(boolean tf) {
+		isTemp = tf;
+	}
+
+
   
   @Override
   public boolean isBigEndian() {
@@ -72,6 +85,17 @@ public class OC extends OutputStream implements GenericOutputChannel {
   	bigEndian = TF;
   }
 
+	/**
+	 * Set up an output channel. String or byte data can be added without problem.
+	 * 
+	 * @param bytePoster a byte poster can take the output byte[] when closing and
+	 *                   do something with them
+	 * @param fileName   TODO: It is possible that JavaScript will call this with a
+	 *                   function name for fileName
+	 * @param asWriter   string-based
+	 * @param os         the desired target OutputStream - not the calling stream!
+	 * @return
+	 */
   public OC setParams(BytePoster bytePoster, String fileName,
                                      boolean asWriter, OutputStream os) {
     this.bytePoster = bytePoster;
@@ -84,7 +108,7 @@ public class OC extends OutputStream implements GenericOutputChannel {
     this.fileName = fileName;
     this.os = os;
     isLocalFile = (fileName != null && !isRemote(fileName));
-    if (asWriter && !isBase64 && os != null)
+    if (asWriter && !isBase64 && os != null) 
     	bw = Rdr.getBufferedWriter(os, null);
     return this;
   }
@@ -303,12 +327,12 @@ public class OC extends OutputStream implements GenericOutputChannel {
       return (sb == null ? null : sb.toString());
     }
     closed = true;
-    J2SObjectInterface jmol = null;
+    J2SObjectInterface J2S = null;
     Object _function = null;
     /**
      * @j2sNative
      * 
-     *            jmol = self.J2S || Jmol; _function = (typeof this.fileName == "function" ?
+     *            J2S = self.J2S || self.Jmol; _function = (typeof this.fileName == "function" ?
      *            this.fileName : null);
      * 
      */
@@ -320,12 +344,22 @@ public class OC extends OutputStream implements GenericOutputChannel {
         return ret;
       }
     }
-    if (jmol != null) {
+    if (J2S != null && !isTemp) {
+    	
+      // action here generally will be for the browser to display a download message
+      // temp files will not be sent this way.
       Object data = (sb == null ? toByteArray() : sb.toString());
-      if (_function == null)
-        jmol._doAjax(fileName, null, data, sb == null);
-      else
-        jmol._apply(_function, data);
+      if (_function == null) {
+    	Object info = /** @j2sNative { isBinary : (this.sb == null) } || */ null;
+  	  	String mimetype = null;
+    	if (bytes != null && Rdr.isZipB(bytes)) {
+    		mimetype= "application/zip";
+    	}
+  	  	
+        J2S.doAjax(fileName, mimetype, data, info);
+      } else {
+        J2S.applyFunc(_function, data);
+      }
     }
     return null;
   }
@@ -339,7 +373,8 @@ public class OC extends OutputStream implements GenericOutputChannel {
 	}
 	
   public byte[] toByteArray() {
-    return (bytes != null ? bytes : os instanceof ByteArrayOutputStream ? ((ByteArrayOutputStream)os).toByteArray() : null);
+    return (bytes != null ? bytes : (bytes = os instanceof ByteArrayOutputStream ? ((ByteArrayOutputStream)os).toByteArray() : 
+    	sb == null ? null : sb.toBytes(0, sb.length())));
   }
 
   @Override
@@ -361,9 +396,14 @@ public class OC extends OutputStream implements GenericOutputChannel {
     return byteCount + " bytes";
   }
 
+  /**
+   * We have constructed some sort of byte[] that needs to be posted to a remote site.
+   * We don't do that posting here -- we let the bytePoster do it.
+   * 
+   * @return
+   */
   private String postByteArray() {
-    byte[] bytes = (sb == null ? toByteArray() : sb.toString().getBytes());
-    return bytePoster.postByteArray(fileName, bytes);
+    return bytePoster == null ? null : bytePoster.postByteArray(fileName, toByteArray());
   }
 
   public final static String[] urlPrefixes = { "http:", "https:", "sftp:", "ftp:",

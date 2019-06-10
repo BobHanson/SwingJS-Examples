@@ -69,14 +69,14 @@ import java.util.Random;
 
 import javax.sound.sampled.AudioFormat;
 
-import a2s.Applet;
-import a2s.Button;
-import a2s.Canvas;
-import a2s.Checkbox;
-import a2s.Choice;
-import a2s.Frame;
-import a2s.Label;
-import a2s.Scrollbar;
+import java.applet.Applet;
+import java.awt.Button;
+import java.awt.Canvas;
+import java.awt.Checkbox;
+import java.awt.Choice;
+import java.awt.Frame;
+import java.awt.Label;
+import java.awt.Scrollbar;
 import javajs.util.JSAudioThread;
 
 public class StringWave extends Applet implements ComponentListener {
@@ -404,7 +404,7 @@ class StringWaveFrame extends Frame implements ComponentListener,
 			handleResize();
 			Dimension x = getSize();
 			Dimension screen = getToolkit().getScreenSize();
-			setLocation((screen.width - x.width) / 2, (screen.height - x.height) / 2);
+			setLocation((screen.width - x.width) / 2, Math.max((screen.height - x.height) / 2, 0));
 			setVisible(true);
 		} else {
 			setVisible(false);
@@ -1427,7 +1427,7 @@ class StringWaveFrame extends Frame implements ComponentListener,
 		}
 
 		@Override
-		public void paintComponent(Graphics g) {
+		public void paint(Graphics g) {
 			pg.updateStringWave(g);
 		}
 	};

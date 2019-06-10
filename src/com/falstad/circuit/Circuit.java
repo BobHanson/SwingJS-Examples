@@ -19,7 +19,7 @@ import java.awt.Graphics;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 
-import a2s.Applet;
+import java.applet.Applet;
 
 public class Circuit extends Applet implements ComponentListener {
 	static CirSim ogf;

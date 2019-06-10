@@ -262,32 +262,26 @@ public class BinaryDocument extends BC implements GenericBinaryDocument {
     return intToFloat(readInt());
   }
 
+  @SuppressWarnings("unused")
   @Override
   public double readDouble() throws IOException {
-	  boolean isJS = false;
     /**
      * 
      * reading the float equivalent here in JavaScript
      * 
      * @j2sNative
      * 
-     * isJS = true;
-     *  
-     */
-    {}
-    if (isJS) {
-        this.readByteArray(this.t8, 0, 8);
-        return bytesToDoubleToFloat(this.t8, 0, this.isBigEndian);
-    }
-    /**
      * 
-     * @j2sIgnore
-     *  
-     */    
+     */
     {
       nBytes += 8;
-      return (isBigEndian ? ioReadDouble() : Double.longBitsToDouble(readLELong()));  
+      if (true)
+        return (isBigEndian ? ioReadDouble()
+            : Double.longBitsToDouble(readLELong()));
     }
+    // this is the JavaScript-only part
+    this.readByteArray(this.t8, 0, 8);
+    return bytesToDoubleToFloat(this.t8, 0, this.isBigEndian);
   }
   
   private double ioReadDouble() throws IOException {

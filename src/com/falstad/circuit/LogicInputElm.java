@@ -4,7 +4,7 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.util.StringTokenizer;
 
-import a2s.Checkbox;
+import java.awt.Checkbox;
 
     class LogicInputElm extends SwitchElm {
 	final int FLAG_TERNARY = 1;

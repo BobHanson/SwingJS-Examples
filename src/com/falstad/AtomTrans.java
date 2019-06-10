@@ -37,21 +37,21 @@ import java.util.Random;
 import javax.swing.ButtonGroup;
 import javax.swing.JRadioButtonMenuItem;
 
-import a2s.Applet;
+import java.applet.Applet;
 
 import com.falstad.Complex;
 
-import a2s.Button;
-import a2s.Canvas;
-import a2s.Checkbox;
-import a2s.CheckboxMenuItem;
-import a2s.Choice;
-import a2s.Frame;
-import a2s.Label;
-import a2s.Menu;
-import a2s.MenuBar;
-import a2s.MenuItem;
-import a2s.Scrollbar;
+import java.awt.Button;
+import java.awt.Canvas;
+import java.awt.Checkbox;
+import java.awt.CheckboxMenuItem;
+import java.awt.Choice;
+import java.awt.Frame;
+import java.awt.Label;
+import java.awt.Menu;
+import java.awt.MenuBar;
+import java.awt.MenuItem;
+import java.awt.Scrollbar;
 
 //web_Ready
 //web_AppletName= Atomic Dipole Transitions
@@ -73,7 +73,7 @@ class AtomTransCanvas extends Canvas {
     public void update(Graphics g) {
 	pg.updateAtomTrans(g);
     }
-    public void paintComponent(Graphics g) {
+    public void paint(Graphics g) {
 	pg.updateAtomTrans(g);
     }
 };

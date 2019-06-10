@@ -1,10 +1,10 @@
 package com.falstad.circuit;
 
 
-import a2s.Checkbox;
-import a2s.Choice;
-import a2s.Scrollbar;
-import a2s.TextField;
+import java.awt.Checkbox;
+import java.awt.Choice;
+import java.awt.Scrollbar;
+import java.awt.TextField;
 
 class EditInfo {
     EditInfo(String n, double val, double mn, double mx) {

@@ -40,14 +40,14 @@ import java.text.NumberFormat;
 import java.util.Random;
 import java.util.Vector;
 
-import a2s.Applet;
+import java.applet.Applet;
 
-import a2s.Button;
-import a2s.Canvas;
-import a2s.Checkbox;
-import a2s.Choice;
-import a2s.Label;
-import a2s.Scrollbar;
+import java.awt.Button;
+import java.awt.Canvas;
+import java.awt.Checkbox;
+import java.awt.Choice;
+import java.awt.Label;
+import java.awt.Scrollbar;
 
 class GasCanvas extends Canvas {
  Gas pg;
@@ -60,7 +60,7 @@ class GasCanvas extends Canvas {
  public void update(Graphics g) {
 	pg.updateGas(g);
  }
- public void paintComponent(Graphics g) {
+ public void paint(Graphics g) {
 	pg.updateGas(g);
  }
 };
@@ -77,7 +77,7 @@ class HistogramCanvas extends Canvas {
 	pg.updateHistogram(g);
  }
 
- public void paintComponent(Graphics g) {
+ public void paint(Graphics g) {
 	pg.updateHistogram(g);
  }
 

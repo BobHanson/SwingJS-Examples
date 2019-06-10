@@ -35,7 +35,7 @@ package com.falstad;
 // added triggerShow()
 
 
-import a2s.Applet;
+import java.applet.Applet;
 
 import com.falstad.Complex;
 
@@ -70,17 +70,17 @@ import java.util.Vector;
 import com.falstad.FFT;
 
 
-import a2s.Button;
-import a2s.Canvas;
-import a2s.Checkbox;
-import a2s.CheckboxMenuItem;
-import a2s.Choice;
-import a2s.Frame;
-import a2s.Label;
-import a2s.Menu;
-import a2s.MenuBar;
-import a2s.MenuItem;
-import a2s.Scrollbar;
+import java.awt.Button;
+import java.awt.Canvas;
+import java.awt.Checkbox;
+import java.awt.CheckboxMenuItem;
+import java.awt.Choice;
+import java.awt.Frame;
+import java.awt.Label;
+import java.awt.Menu;
+import java.awt.MenuBar;
+import java.awt.MenuItem;
+import java.awt.Scrollbar;
 
 class QuantumRotatorCanvas extends Canvas {
  QuantumRotatorFrame pg;
@@ -93,7 +93,7 @@ class QuantumRotatorCanvas extends Canvas {
  public void update(Graphics g) {
 	pg.updateQuantumRotator(g);
  }
- public void paintComponent(Graphics g) {
+ public void paint(Graphics g) {
 	pg.updateQuantumRotator(g);
  }
 };
@@ -442,7 +442,7 @@ implements ComponentListener, ActionListener, AdjustmentListener,
 		Dimension x = getSize();
 		Dimension screen = getToolkit().getScreenSize();
 		setLocation((screen.width - x.width) / 2,
-				(screen.height - x.height) / 2);
+				Math.max((screen.height - x.height) / 2, 0));
 		setVisible(true);
 		setupStates();
 	} else {

@@ -7,11 +7,11 @@ import java.awt.event.*;
 import java.text.NumberFormat;
 import java.text.DecimalFormat;
 
-import a2s.Button;
-import a2s.Dialog;
-import a2s.Label;
-import a2s.TextField;
-import a2s.Scrollbar;
+import java.awt.Button;
+import java.awt.Dialog;
+import java.awt.Label;
+import java.awt.TextField;
+import java.awt.Scrollbar;
 
 class EditDialog extends Dialog implements AdjustmentListener, ActionListener, ItemListener {
     Editable elm;

@@ -3,7 +3,7 @@ package com.falstad.circuit;
 import java.awt.Dimension;
 import java.awt.Graphics;
 
-import a2s.Canvas;
+import java.awt.Canvas;
 
 // Changed paint to paintComponent
 
@@ -22,7 +22,7 @@ class CircuitCanvas extends Canvas {
 		pg.updateCircuit(g);
 	}
 
-	public void paintComponent(Graphics g) {
+	public void paint(Graphics g) {
 		pg.updateCircuit(g);
 	}
 };

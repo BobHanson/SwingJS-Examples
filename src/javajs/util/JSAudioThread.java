@@ -205,7 +205,7 @@ public class JSAudioThread extends JSThread {
 	@Override
 	protected void whenDone() {
 		done = true;
-		resetAudio();
+		//resetAudio();
 	}
 
 	@Override

@@ -28,50 +28,68 @@ public class BC {
         | (bytes[j + 1] & 0xff) << 16 | (bytes[j] & 0xff) << 24
         : (bytes[j++] & 0xff) | (bytes[j++] & 0xff) << 8
             | (bytes[j++] & 0xff) << 16 | (bytes[j++] & 0xff) << 24);
-    /**
-     * @j2sNative
-     * 
-     * return (n > 0x7FFFFFFF ? n - 0x100000000 : n);
-     *   
-     */
-    {
-      return n;
-    }
+    
+    return (/** @j2sNative (n|0) || */ n); 
+//    /**
+//     * xxxxxxj2sNative
+//     * 
+//     * return (n > 0x7FFFFFFF ? n - 0x100000000 : n);
+//     *   
+//     */
+//    {
+//      return n;
+//    }
   }
 
   public static int intToSignedInt(int n) {
-    /**
-     * @j2sNative
-     * 
-     * return (n > 0x7FFFFFFF ? n - 0x100000000 : n);
-     *   
-     */
-    {
-      return n;
-    }    
+	  
+	    return (/** @j2sNative n || */ n); 
+
+//    /**
+//     * xxxxxxj2sNative
+//     * 
+//     * return (n > 0x7FFFFFFF ? n - 0x100000000 : n);
+//     *   
+//     */
+//    {
+//      return n;
+//    }    
   }
   public static float intToFloat(int x) throws Exception {
-    /**
-     * see http://en.wikipedia.org/wiki/Binary32
-     * 
-     * [sign]      [8 bits power] [23 bits fraction]
-     * 0x80000000  0x7F800000      0x7FFFFF
-     * 
-     * (untested)
-     * 
-     * @j2sNative
-     * 
-     *       if (x == 0) return 0;
-     *       var o = javajs.util.BC;
-     *       if (o.fracIEEE == null)
-     *         o.setFracIEEE();
-     *       var m = ((x & 0x7F800000) >> 23);
-     *       return ((x & 0x80000000) == 0 ? 1 : -1) * o.shiftIEEE((x & 0x7FFFFF) | 0x800000, m - 149);
-     *  
-     */
-    {
+    
+//    // see http://en.wikipedia.org/wiki/Binary32
+//    // 
+//    // [sign]      [8 bits power] [23 bits fraction]
+//    // 0x80000000  0x7F800000      0x7FFFFF
+//    // 
+//    // (untested)
+//		if (x == 0)
+//			return 0;
+//	boolean isJS = /** xxxxxxj2sNative true | */false;
+//	
+//	
+//	if (isJS) {
+//        if (fracIEEE == null)
+//            setFracIEEE();		
+//        int m =  ((x & 0x7F800000) >> 23);
+//        *       return ((x & 0x80000000) == 0 ? 1 : -1) * o.shiftIEEE$D$I((x & 0x7FFFFF) | 0x800000, m - 149);
+//
+//	}
+//	 /** 
+//     * 
+//     * xxxxxxj2sNative
+//     * 
+//     *       if (x == 0) return 0;
+//     *       var o = javajs.util.BC;
+//     *       if (o.fracIEEE$ == null)
+//     *         o.setFracIEEE$();
+//     *       var m = ((x & 0x7F800000) >> 23);
+//     *       return ((x & 0x80000000) == 0 ? 1 : -1) * o.shiftIEEE$D$I((x & 0x7FFFFF) | 0x800000, m - 149);
+//     *  
+//     */
+//    {
     return Float.intBitsToFloat(x);
-    }
+ //   }
   }
 
   /**
@@ -96,7 +114,6 @@ public class BC {
         
       /**
        * @j2sNative
-       *       var o = javajs.util.BC;
        *       var b1, b2, b3, b4, b5;
        *       
        *       if (isBigEndian) {
@@ -115,8 +132,8 @@ public class BC {
        *       var s = ((b1 & 0x80) == 0 ? 1 : -1);
        *       var e = (((b1 & 0x7F) << 4) | (b2 >> 4)) - 1026;
        *       b2 = (b2 & 0xF) | 0x10;
-       *       return s * (o.shiftIEEE(b2, e) + o.shiftIEEE(b3, e - 8) + o.shiftIEEE(b4, e - 16)
-       *         + o.shiftIEEE(b5, e - 24));
+       *       return s * (C$.shiftIEEE$D$I(b2, e) +C$.shiftIEEE$D$I(b3, e - 8) + C$.shiftIEEE$D$I(b4, e - 16)
+       *         + C$.shiftIEEE$D$I(b5, e - 24));
        */
       {
         double d;

@@ -64,16 +64,16 @@ import javax.swing.Timer;
 //     right button, but the right button was being excluded by use of META_MASK
 
 
-import a2s.Button;
-import a2s.Checkbox;
-import a2s.CheckboxMenuItem;
-import a2s.Frame;
-import a2s.Label;
-import a2s.Menu;
-import a2s.MenuBar;
-import a2s.MenuItem;
-import a2s.PopupMenu;
-import a2s.Scrollbar;
+import java.awt.Button;
+import java.awt.Checkbox;
+import java.awt.CheckboxMenuItem;
+import java.awt.Frame;
+import java.awt.Label;
+import java.awt.Menu;
+import java.awt.MenuBar;
+import java.awt.MenuItem;
+import java.awt.PopupMenu;
+import java.awt.Scrollbar;
 
 public class CirSim extends Frame implements ComponentListener, ActionListener,
 		AdjustmentListener, MouseMotionListener, MouseListener, ItemListener,
@@ -605,7 +605,7 @@ public class CirSim extends Frame implements ComponentListener, ActionListener,
 			resize(860, 640);
 			handleResize();
 			Dimension x = getSize();
-			setLocation((screen.width - x.width) / 2, (screen.height - x.height) / 2);
+			setLocation((screen.width - x.width) / 2, Math.max((screen.height - x.height) / 2, 0));
 			show();
 		} else {
 			if (!powerCheckItem.getState()) {
@@ -1984,8 +1984,6 @@ public class CirSim extends Frame implements ComponentListener, ActionListener,
 				break;
 		}
 		lastIterTime = lit;
-		// System.out.println((System.currentTimeMillis()-lastFrameTime)/(double)
-		// iter);
 	}
 
 	int min(int a, int b) {
@@ -2845,16 +2843,6 @@ public class CirSim extends Frame implements ComponentListener, ActionListener,
 
 //	long ti = 0;
 	public void mouseClicked(MouseEvent e) {
-		
-		
-		int ex = e.getModifiersEx();
-		
-	//	long t1 = System.currentTimeMillis();
-		//System.out.println("CirSim java clicked("+ e.getClickCount()+"," + (t1 - ti) 
-	//			+","+e.getX()+","+ e.getY()+")"
-	//	+ " " + Integer.toBinaryString(ex) + " " + InputEvent.getModifiersExText(ex));
-//		ti = t1;
-
 		if (e.getClickCount() == 2 && !didSwitch)
 			doEditMenu(e);
 		if ((e.getModifiers() & MouseEvent.BUTTON1_MASK) != 0) {

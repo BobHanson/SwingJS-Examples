@@ -4,8 +4,8 @@ import java.awt.Graphics;
 import java.awt.Point;
 import java.util.StringTokenizer;
 
-import a2s.Label;
-import a2s.Scrollbar;
+import java.awt.Label;
+import java.awt.Scrollbar;
 
 // stub ThermistorElm based on SparkGapElm
 // FIXME need to uncomment ThermistorElm line from CirSim.java

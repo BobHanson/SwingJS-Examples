@@ -36,12 +36,12 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
-import a2s.Applet;
+import java.applet.Applet;
 
-import a2s.Button;
-import a2s.Canvas;
-import a2s.Choice;
-import a2s.Frame;
+import java.awt.Button;
+import java.awt.Canvas;
+import java.awt.Choice;
+import java.awt.Frame;
 
 class DiffEqCanvas extends Canvas {
     DiffEqFrame pg;
@@ -54,8 +54,7 @@ class DiffEqCanvas extends Canvas {
     public void update(Graphics g) {
 	pg.updateDiffEq(g);
     }
-    public void paintComponent(Graphics g) {
-	super.paintComponent(g);
+    public void paint(Graphics g) {
 	pg.updateDiffEq(g);
     }
 };
@@ -346,7 +345,7 @@ class DiffEqFrame extends Frame
             handleResize();
             Dimension x = getSize();
             Dimension screen = getToolkit().getScreenSize();
-            setLocation((screen.width - x.width) / 2, (screen.height - x.height) / 2);
+            setLocation((screen.width - x.width) / 2, Math.max((screen.height - x.height) / 2, 0));
             setVisible(true);
         } else {
             setVisible(false);
@@ -1787,8 +1786,7 @@ class DiffEqFrame extends Frame
 	public Dimension getPreferredSize() {
 	    return new Dimension(200,20);
 	}
-	public void paintComponent(Graphics g) {
-	    super.paintComponent(g);
+	public void paint(Graphics g) {
 	    FontMetrics fm = g.getFontMetrics();
 	    labelWidth = fm.stringWidth(label);
 	    signWidth = fm.stringWidth("+ ");

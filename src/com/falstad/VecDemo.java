@@ -53,15 +53,15 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
-import a2s.Applet;
-import a2s.Canvas;
-import a2s.TextField;
+import java.applet.Applet;
+import java.awt.Canvas;
+import java.awt.TextField;
 
-import a2s.Label;
-import a2s.Choice;
-import a2s.Frame;
-import a2s.Checkbox;
-import a2s.Button;
+import java.awt.Label;
+import java.awt.Choice;
+import java.awt.Frame;
+import java.awt.Checkbox;
+import java.awt.Button;
 
 class VecDemoCanvas extends Canvas {
     VecDemoFrame pg;
@@ -74,8 +74,7 @@ class VecDemoCanvas extends Canvas {
     public void update(Graphics g) {
 	pg.updateVecDemo(g);
     }
-    public void paintComponent(Graphics g) {
-	super.paintComponent(g);
+    public void paint(Graphics g) {
 	pg.updateVecDemo(g);
     }
 };
@@ -512,7 +511,7 @@ class VecDemoFrame extends Frame
             handleResize();
             Dimension x = getSize();
             Dimension screen = getToolkit().getScreenSize();
-            setLocation((screen.width - x.width) / 2, (screen.height - x.height) / 2);
+            setLocation((screen.width - x.width) / 2, Math.max((screen.height - x.height) / 2, 0));
             setVisible(true);
         } else {
             setVisible(false);

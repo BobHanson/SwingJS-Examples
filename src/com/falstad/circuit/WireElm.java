@@ -3,7 +3,7 @@ package com.falstad.circuit;
 import java.awt.Graphics;
 import java.util.StringTokenizer;
 
-import a2s.Checkbox;
+import java.awt.Checkbox;
 
     class WireElm extends CircuitElm {
 	public WireElm(int xx, int yy) { super(xx, yy); }

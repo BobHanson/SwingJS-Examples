@@ -9,9 +9,9 @@ import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.StringSelection;
 import java.awt.datatransfer.Transferable;
 
-import a2s.Button;
-import a2s.Dialog;
-import a2s.TextArea;
+import java.awt.Button;
+import java.awt.Dialog;
+import java.awt.TextArea;
 
 class ImportExportClipboardDialog
 extends Dialog

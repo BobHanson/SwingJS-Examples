@@ -3,18 +3,24 @@ package com.falstad;
 
 
 
-import java.io.InputStream;
+import java.applet.Applet;
+import java.awt.Canvas;
+import java.awt.Checkbox;
+import java.awt.Choice;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Event;
 import java.awt.FontMetrics;
+import java.awt.Frame;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Insets;
+import java.awt.Label;
 import java.awt.LayoutManager;
 import java.awt.Rectangle;
+import java.awt.Scrollbar;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.AdjustmentEvent;
@@ -26,23 +32,10 @@ import java.awt.event.ItemListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
-import java.awt.image.ImageProducer;
-import java.util.Vector;
-import java.io.File;
-import java.util.Random;
-import java.util.Arrays;
 import java.awt.image.MemoryImageSource;
-import java.lang.Math;
 import java.text.NumberFormat;
-
-import a2s.Applet;
-import a2s.Button;
-import a2s.Canvas;
-import a2s.Checkbox;
-import a2s.Choice;
-import a2s.Frame;
-import a2s.Label;
-import a2s.Scrollbar;
+import java.util.Random;
+import java.util.Vector;
 
 //web_Ready
 //web_AppletName= Antenna
@@ -64,7 +57,7 @@ class AntennaCanvas extends Canvas {
     public void update(Graphics g) {
 	pg.updateAntenna(g);
     }
-    public void paintComponent(Graphics g) {
+    public void paint(Graphics g) {
 	pg.updateAntenna(g);
     }
 };
@@ -366,7 +359,7 @@ class AntennaFrame extends Frame
 	    handleResize();
 	    Dimension x = getSize();
 	    Dimension screen = getToolkit().getScreenSize();
-	    setLocation((screen.width - x.width) / 2, (screen.height - x.height) / 2);
+	    setLocation((screen.width - x.width) / 2, Math.max((screen.height - x.height) / 2, 0));
 	    setVisible(true);
 	} else {
 	    setVisible(false);

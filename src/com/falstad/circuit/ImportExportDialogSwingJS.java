@@ -2,8 +2,8 @@ package com.falstad.circuit;
 
 import java.awt.Event;
 
-import a2s.Dialog;
-import a2s.TextArea;
+import java.awt.Dialog;
+import java.awt.TextArea;
 
 /**
  * 

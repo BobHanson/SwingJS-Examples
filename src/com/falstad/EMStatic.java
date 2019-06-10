@@ -57,15 +57,15 @@ import java.awt.event.MouseMotionListener;
 import java.text.NumberFormat;
 import java.util.Vector;
 
-import a2s.Applet;
+import java.applet.Applet;
 
-import a2s.Button;
-import a2s.Canvas;
-import a2s.Checkbox;
-import a2s.Choice;
-import a2s.Frame;
-import a2s.Label;
-import a2s.Scrollbar;
+import java.awt.Button;
+import java.awt.Canvas;
+import java.awt.Checkbox;
+import java.awt.Choice;
+import java.awt.Frame;
+import java.awt.Label;
+import java.awt.Scrollbar;
 
 class EMStaticCanvas extends Canvas {
     EMStaticFrame pg;
@@ -81,7 +81,7 @@ class EMStaticCanvas extends Canvas {
 	pg.updateEMStatic(g);
     }
     @Override
-		public void paintComponent(Graphics g) {
+		public void paint(Graphics g) {
 	pg.updateEMStatic(g);
     }
 }
@@ -451,7 +451,7 @@ class EMStaticFrame extends Frame
 		Dimension x = getSize();
 		Dimension screen = getToolkit().getScreenSize();
 		setLocation((screen.width - x.width) / 2,
-				(screen.height - x.height) / 2);
+				Math.max((screen.height - x.height) / 2, 0));
 		setVisible(true);
 	} else {
 		setVisible(false);

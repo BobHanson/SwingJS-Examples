@@ -1,12 +1,12 @@
 package javajs.api.js;
 
 /**
- * methods in JSmol JavaScript accessed in Jmol (aka J2S) 
+ * methods in JSmol JavaScript accessed in Jmol
  */
 public interface J2SObjectInterface {
 
-  Object _doAjax(Object url, String postOut, Object bytesOrStringOut, boolean isBinary);
+	Object doAjax(String url, String postOut, Object bytesOrStringOut, Object info);
 
-  void _apply(Object func, Object data);
+	void applyFunc(Object func, Object data);
 
 }

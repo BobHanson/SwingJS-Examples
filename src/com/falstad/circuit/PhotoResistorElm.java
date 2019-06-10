@@ -8,8 +8,8 @@ import java.awt.Graphics;
 import java.awt.Point;
 import java.util.StringTokenizer;
 
-import a2s.Label;
-import a2s.Scrollbar;
+import java.awt.Label;
+import java.awt.Scrollbar;
 
 class PhotoResistorElm extends CircuitElm {
     double minresistance, maxresistance;

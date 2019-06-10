@@ -6,9 +6,9 @@ import java.awt.Dimension;
 import java.awt.Insets;
 import java.awt.LayoutManager;
 
-import a2s.Choice;
-import a2s.Label;
-import a2s.Scrollbar;
+import java.awt.Choice;
+import java.awt.Label;
+import java.awt.Scrollbar;
 
 
 class CircuitLayout implements LayoutManager {

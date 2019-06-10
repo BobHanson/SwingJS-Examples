@@ -6,7 +6,7 @@ import java.awt.Graphics;
 import java.util.StringTokenizer;
 import java.util.Vector;
 
-import a2s.Checkbox;
+import java.awt.Checkbox;
 
 class TextElm extends GraphicElm {
     String text;

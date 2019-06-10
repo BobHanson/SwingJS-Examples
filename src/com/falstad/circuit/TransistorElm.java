@@ -6,7 +6,7 @@ import java.awt.Point;
 import java.awt.Polygon;
 import java.util.StringTokenizer;
 
-import a2s.Checkbox;
+import java.awt.Checkbox;
 
     class TransistorElm extends CircuitElm {
 	int pnp;
