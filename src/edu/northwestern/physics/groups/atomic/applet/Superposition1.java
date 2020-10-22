@@ -37,8 +37,8 @@ package edu.northwestern.physics.groups.atomic.applet;
 
 import java.awt.BorderLayout;
 
-import a2s.Button;
-import a2s.Canvas;
+import java.awt.Button;
+import java.awt.Canvas;
 
 import java.awt.Color;
 import java.awt.Event;
@@ -47,10 +47,10 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import a2s.Label;
-import a2s.Panel;
-import a2s.TextField;
-import a2s.Applet;
+import java.awt.Label;
+import java.awt.Panel;
+import java.awt.TextField;
+import java.applet.Applet;
 
 //web_Ready
 //web_AppletName= Superposition1

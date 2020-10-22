@@ -38,22 +38,20 @@ import java.lang.Math;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 
-import a2s.Button;
-import a2s.Canvas;
-import a2s.Checkbox;
-import a2s.CheckboxMenuItem;
-import a2s.Choice;
-import a2s.Frame;
-import a2s.Label;
-import a2s.Menu;
-import a2s.MenuBar;
-import a2s.MenuItem;
-import a2s.Scrollbar;
+import java.awt.Button;
+import java.awt.Canvas;
+import java.awt.Checkbox;
+import java.awt.CheckboxGroup;
+import java.awt.CheckboxMenuItem;
+import java.awt.Choice;
+import java.awt.Frame;
+import java.awt.Label;
+import java.awt.Menu;
+import java.awt.MenuBar;
+import java.awt.MenuItem;
+import java.awt.Scrollbar;
 
-import javax.swing.ButtonGroup;
-import javax.swing.JRadioButtonMenuItem;
-
-import a2s.Applet;
+import java.applet.Applet;
 
 class QuantumTransCanvas extends Canvas {
     QuantumTransFrame pg;
@@ -66,8 +64,7 @@ class QuantumTransCanvas extends Canvas {
     public void update(Graphics g) {
 	pg.updateQuantumTrans(g);
     }
-    public void paintComponent(Graphics g) {
-	super.paintComponent(g);
+    public void paint(Graphics g) {
 	pg.updateQuantumTrans(g);
     }
 };
@@ -208,10 +205,12 @@ class QuantumTransFrame extends Frame
     CheckboxMenuItem currentCheckItem;
     CheckboxMenuItem expectCheckItem;
     CheckboxMenuItem uncertaintyCheckItem;
+    
     JRadioButtonMenuItem probCheckItem;
     JRadioButtonMenuItem probPhaseCheckItem;
     JRadioButtonMenuItem reImCheckItem;
     JRadioButtonMenuItem magPhaseCheckItem;
+    
     Menu waveFunctionMenu;
     MenuItem exitItem;
     Choice mouseChooser;
@@ -313,8 +312,7 @@ class QuantumTransFrame extends Frame
 	m.add(m2);
 	m2.add(probCheckItem = getRadioItem("Probability"));
 	m2.add(probPhaseCheckItem = getRadioItem("Probability + Phase"));
-//	probPhaseCheckItem.setState(true);
-	probPhaseCheckItem.setSelected(true);
+	probPhaseCheckItem.select(true);
 	m2.add(reImCheckItem = getRadioItem("Real + Imaginary Parts"));
 	m2.add(magPhaseCheckItem = getRadioItem("Magnitude + Phase"));
 	setMenuBar(mb);
@@ -1027,7 +1025,7 @@ class QuantumTransFrame extends Frame
 	int ox = -1, oy = 0;
 	double bestscale = 0;
 	if (fi != null &&
-	      (probCheckItem.isSelected() || probPhaseCheckItem.isSelected()))
+	      (probCheckItem.selected() || probPhaseCheckItem.selected()))
 	    bestscale = 1/maxsq;
 	else
 	    bestscale = 1/maxnm;
@@ -1041,8 +1039,8 @@ class QuantumTransFrame extends Frame
 	}
 	g.setColor(Color.gray);
 
-	if ((probCheckItem.isSelected() || probPhaseCheckItem.isSelected() ||
-	     magPhaseCheckItem.isSelected()) && fi != null) {
+	if ((probCheckItem.selected() || probPhaseCheckItem.selected() ||
+	     magPhaseCheckItem.selected()) && fi != null) {
 
 	    // draw probability or magnitude
 	    g.setColor(Color.white);
@@ -1051,11 +1049,11 @@ class QuantumTransFrame extends Frame
 		int x = winSize.width * i / (count-1);
 		double dy = 0;
 		int ii = i+offset;
-		if (!magPhaseCheckItem.isSelected())
+		if (!magPhaseCheckItem.selected())
 		    dy = (fr[ii]*fr[ii]+fi[ii]*fi[ii]);
 		else
 		    dy = java.lang.Math.sqrt(fr[ii]*fr[ii]+fi[ii]*fi[ii]);
-		if (!probCheckItem.isSelected()) {
+		if (!probCheckItem.selected()) {
 		    double ang = java.lang.Math.atan2(fi[ii], fr[ii]);
 		    g.setColor(phaseColors[(int)((ang+pi)*phaseColorCount/(2*pi+.2))]);
 		}

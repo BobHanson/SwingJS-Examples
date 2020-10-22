@@ -34,8 +34,8 @@ package edu.northwestern.physics.groups.atomic.applet;
 
 import java.awt.BorderLayout;
 
-import a2s.Button;
-import a2s.Canvas;
+import java.awt.Button;
+import java.awt.Canvas;
 
 import java.awt.Color;
 import java.awt.Event;
@@ -48,10 +48,10 @@ import java.awt.event.ActionListener;
 
 import javax.swing.Timer;
 
-import a2s.Label;
-import a2s.Panel;
-import a2s.TextField;
-import a2s.Applet;
+import java.awt.Label;
+import java.awt.Panel;
+import java.awt.TextField;
+import java.applet.Applet;
 
 public class Superposition2 extends Applet implements Runnable {
 

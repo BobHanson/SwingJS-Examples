@@ -3,9 +3,9 @@ package es.uah.sdspage;
 
 import java.awt.Color;
 import java.awt.GridLayout;
-import a2s.Label;
-import a2s.Panel;
-import a2s.TextField;
+import java.awt.Label;
+import java.awt.Panel;
+import java.awt.TextField;
 
 public class ProteinData extends Panel
 {

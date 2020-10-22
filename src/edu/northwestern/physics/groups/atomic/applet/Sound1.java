@@ -34,8 +34,8 @@ package edu.northwestern.physics.groups.atomic.applet;
 
 import java.awt.BorderLayout;
 
-import a2s.Button;
-import a2s.Canvas;
+import java.awt.Button;
+import java.awt.Canvas;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -50,10 +50,10 @@ import java.awt.event.MouseListener;
 
 import javax.swing.Timer;
 
-import a2s.Label;
-import a2s.Panel;
-import a2s.TextField;
-import a2s.Applet;
+import java.awt.Label;
+import java.awt.Panel;
+import java.awt.TextField;
+import java.applet.Applet;
 
 //web_Ready
 //web_AppletName= Sound1
@@ -228,12 +228,6 @@ class Sound1Canvas extends Canvas implements MouseListener {
 		stopAnnimation = !stopAnnimation;
 	}
 
-	@Override
-	public void paintComponent(Graphics g) {
-	    super.paintComponent(g);
-		update(g);
-	}
-
 	public void redraw(Double Vs, Double V, Double Tp) {
 		vs = Vs.doubleValue();
 		v = V.doubleValue();
@@ -243,7 +237,7 @@ class Sound1Canvas extends Canvas implements MouseListener {
 	}
 
 	@Override
-	public void update(Graphics g) {
+	public void paint(Graphics g) {
 
 		final Dimension d = getSize(); // onscreen drawing area:
 		if ((offg == null) || (d.width != offDimension.width)

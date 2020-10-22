@@ -1,5 +1,7 @@
 package edu.northwestern.physics.groups.atomic.applet;
 
+import java.applet.Applet;
+
 //  DoubleSlit.java  (JDK 1.0)
 //
 /*************************************************************************
@@ -53,10 +55,10 @@ package edu.northwestern.physics.groups.atomic.applet;
 
 import java.awt.BorderLayout;
 
-import a2s.Button;
-import a2s.Canvas;
-import a2s.Checkbox;
-import a2s.Choice;
+import java.awt.Button;
+import java.awt.Canvas;
+import java.awt.Checkbox;
+import java.awt.Choice;
 
 import java.awt.Color;
 import java.awt.Event;
@@ -65,13 +67,13 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JApplet;
+//import javax.swing.JApplet;
 
-import a2s.Label;
-import a2s.Panel;
-import a2s.TextField;
+import java.awt.Label;
+import java.awt.Panel;
+import java.awt.TextField;
 
-public class DoubleSlit extends JApplet {
+public class DoubleSlit extends Applet {
 
 	/**
 	 *
@@ -421,31 +423,40 @@ class DoubleSlitControls extends Panel implements ActionListener {
 		add(c);
 		
 		// PF added the following
-		singleSlit.addActionListener(this);
-		doubleSlit.addActionListener(this);
-		combinedSlit.addActionListener(this);
-		c.addActionListener(this);
+//		singleSlit.addActionListener(this);
+//		doubleSlit.addActionListener(this);
+//		combinedSlit.addActionListener(this);
+//		c.addActionListener(this);
 		n.addActionListener(this);
 		a.addActionListener(this);
 		d.addActionListener(this);
 		l.addActionListener(this);
 	}
 
+	public boolean action(Event event, Object what) {
+		performAction();
+		return true;
+	}
+	
 	public void actionPerformed(ActionEvent ev) {
-			int displayBy;
-			canvas.displaySingleSlit = singleSlit.getState();
-			canvas.displayDoubleSlit = doubleSlit.getState();
-			canvas.displayCombinedSlit = combinedSlit.getState();
-			displayBy = c.getSelectedIndex();
-			if (displayBy == 0) {
-				canvas.displayByTheta = displayBy;
-			} else {
-				canvas.displayByTheta = 1;
-			}
-			canvas.redraw(Integer.valueOf(n.getText().trim()),
-					Double.valueOf(a.getText().trim()),
-					Double.valueOf(d.getText().trim()),
-					Double.valueOf(l.getText().trim()));
+		performAction();
+	}
+
+	private void performAction() {
+		int displayBy;
+		canvas.displaySingleSlit = singleSlit.getState();
+		canvas.displayDoubleSlit = doubleSlit.getState();
+		canvas.displayCombinedSlit = combinedSlit.getState();
+		displayBy = c.getSelectedIndex();
+		if (displayBy == 0) {
+			canvas.displayByTheta = displayBy;
+		} else {
+			canvas.displayByTheta = 1;
+		}
+		canvas.redraw(Integer.valueOf(n.getText().trim()),
+				Double.valueOf(a.getText().trim()),
+				Double.valueOf(d.getText().trim()),
+				Double.valueOf(l.getText().trim()));
 	}
 
 }

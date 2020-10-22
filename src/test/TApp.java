@@ -3,10 +3,10 @@ package test;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import a2s.Applet;
-import a2s.Button;
-import a2s.Label;
-import a2s.Panel;
+import java.applet.Applet;
+import java.awt.Button;
+import java.awt.Label;
+import java.awt.Panel;
 
 public class TApp extends Applet {
 	Label tl;

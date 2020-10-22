@@ -27,19 +27,19 @@ package edu.northwestern.physics.groups.atomic.applet;
  * @version 0.1, June 1999
  */
 
-import a2s.Applet;
+import java.applet.Applet;
 import java.awt.BorderLayout;
-import a2s.Button;
-import a2s.Canvas;
-import a2s.Choice;
+import java.awt.Button;
+import java.awt.Canvas;
+import java.awt.Choice;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.Image;
-import a2s.Label;
-import a2s.Panel;
-import a2s.TextField;
+import java.awt.Label;
+import java.awt.Panel;
+import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;

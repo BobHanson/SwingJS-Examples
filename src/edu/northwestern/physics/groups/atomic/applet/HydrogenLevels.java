@@ -9,13 +9,13 @@ import java.awt.GridLayout;
 import javax.swing.AbstractButton;
 import javax.swing.JApplet;
 
-import a2s.Button;
-import a2s.Canvas;
-import a2s.Checkbox;
-import a2s.Choice;
-import a2s.Label;
-import a2s.Panel;
-import a2s.TextField;
+import java.awt.Button;
+import java.awt.Canvas;
+import java.awt.Checkbox;
+import java.awt.Choice;
+import java.awt.Label;
+import java.awt.Panel;
+import java.awt.TextField;
 //Hydrogen.java
 //
 /*************************************************************************
@@ -59,7 +59,7 @@ import a2s.TextField;
 // BH only changes are (1) to replace setBackground() in the middle of a paint operation (which calls repaint!)
 // BH              and (2) check for button instanceof AbstractButton, not Button
 
-// BH no ActionListener business necessary, as these are now handled by a2s.A2SEvent
+// BH no ActionListener business necessary, as these are now handled by java.awt.A2SEvent
 
 class HydrogenCanvas extends Canvas {
 

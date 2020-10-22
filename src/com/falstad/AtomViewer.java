@@ -83,21 +83,21 @@ import java.util.Random;
 import javax.swing.ButtonGroup;
 import javax.swing.JRadioButtonMenuItem;
 
-import a2s.Applet;
+import java.applet.Applet;
 
 import com.falstad.Complex;
 
-import a2s.Button;
-import a2s.Canvas;
-import a2s.Checkbox;
-import a2s.CheckboxMenuItem;
-import a2s.Choice;
-import a2s.Frame;
-import a2s.Label;
-import a2s.Menu;
-import a2s.MenuBar;
-import a2s.MenuItem;
-import a2s.Scrollbar;
+import java.awt.Button;
+import java.awt.Canvas;
+import java.awt.Checkbox;
+import java.awt.CheckboxMenuItem;
+import java.awt.Choice;
+import java.awt.Frame;
+import java.awt.Label;
+import java.awt.Menu;
+import java.awt.MenuBar;
+import java.awt.MenuItem;
+import java.awt.Scrollbar;
 
 class AtomViewerCanvas extends Canvas {
 	AtomViewerFrame pg;
@@ -116,10 +116,10 @@ class AtomViewerCanvas extends Canvas {
 		pg.updateAtomViewer(g);
 	}
 
-	@Override
-	public void paintComponent(Graphics g) {
-		pg.updateAtomViewer(g);
-	}
+//	@Override
+//	public void paintComponent(Graphics g) {
+//		pg.updateAtomViewer(g);
+//	}
 }
 
 class AtomViewerLayout implements LayoutManager {
@@ -467,12 +467,12 @@ class AtomViewerFrame extends Frame implements ComponentListener,
 		mb.add(m);
 //		samplesItems = new CheckboxMenuItem[6];
 		samplesItems = new JRadioButtonMenuItem[6];
-		m.add(samplesItems[0] = getRadioItem("Samples = 9 (fastest)"));
-		m.add(samplesItems[1] = getRadioItem("Samples = 15 (default)"));
-		m.add(samplesItems[2] = getRadioItem("Samples = 25"));
-		m.add(samplesItems[3] = getRadioItem("Samples = 35"));
-		m.add(samplesItems[4] = getRadioItem("Samples = 45"));
-		m.add(samplesItems[5] = getRadioItem("Samples = 55 (best)"));
+		m.add((MenuItem) (Object) (samplesItems[0] = getRadioItem("Samples = 9 (fastest)")));
+		m.add((MenuItem) (Object) (samplesItems[1] = getRadioItem("Samples = 15 (default)")));
+		m.add((MenuItem) (Object) (samplesItems[2] = getRadioItem("Samples = 25")));
+		m.add((MenuItem) (Object) (samplesItems[3] = getRadioItem("Samples = 35")));
+		m.add((MenuItem) (Object) (samplesItems[4] = getRadioItem("Samples = 45")));
+		m.add((MenuItem) (Object) (samplesItems[5] = getRadioItem("Samples = 55 (best)")));
 		samplesGroup = new ButtonGroup();
 		for (int i = 0; i < 6; i++) {
 			samplesGroup.add(samplesItems[i]);
@@ -1385,7 +1385,7 @@ class AtomViewerFrame extends Frame implements ComponentListener,
 		int n = nChooser.getSelectedIndex() + 1;
 		int l = lChooser.getSelectedIndex();
 		ignoreAdjustments = true;
-		lChooser.removeAllItems();
+		lChooser.removeAll();//.removeAllItems();
 		for (i = 0; i < n; i++)
 			lChooser.add("l = " + i + ((i < 6) ? " (" + codeLetter[i] + ")" : ""));
 		if (l < n && l >= 0)
@@ -1398,7 +1398,7 @@ class AtomViewerFrame extends Frame implements ComponentListener,
 		int l = getL();
 		int i;
 		ignoreAdjustments = true;
-		mChooser.removeAllItems();
+		mChooser.removeAll();
 		if (viewChooser.getSelectedIndex() == VIEW_REAL) {
 			if (l == 0) {
 				mChooser.add(getN() + "s");

@@ -810,10 +810,10 @@ public class CirSim extends Frame implements ComponentListener, ActionListener,
 		return super.handleEvent(ev);
 	}
 
-//	public void paint(Graphics g) {
-//		super.paint(g);
-//		repaintCV(0);
-//	}
+	public void paint(Graphics g) {
+		super.paint(g);
+		repaintCV(0);
+	}
 
 	static final int resct = 6;
 

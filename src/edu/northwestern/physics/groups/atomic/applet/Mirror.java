@@ -29,15 +29,15 @@ package edu.northwestern.physics.groups.atomic.applet;
 
 import java.awt.BorderLayout;
 
-import a2s.Canvas;
-import a2s.Checkbox;
-import a2s.Choice;
+import java.awt.Canvas;
+import java.awt.Checkbox;
+import java.awt.Choice;
 
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.GridLayout;
 
-import a2s.Panel;
+import java.awt.Panel;
 
 import java.awt.Point;
 import java.awt.event.ItemEvent;

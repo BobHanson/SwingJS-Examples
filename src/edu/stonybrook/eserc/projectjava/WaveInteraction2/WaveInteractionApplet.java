@@ -12,9 +12,9 @@ import java.awt.event.ActionListener;
 
 import javax.swing.Timer;
 
-import a2s.Applet;
-import a2s.Button;
-import a2s.Scrollbar;
+import java.applet.Applet;
+import java.awt.Button;
+import java.awt.Scrollbar;
 //a2s is a SwingJS Java AWT adapter package that allow us to 
 //keep references here that look like AWT Applet and Components
 //even though everything has to be Swing JApplet and JComponents.
@@ -1009,7 +1009,7 @@ public boolean mouseUp(Event evt, int x, int y) {
 //	........36	.........1	......9161	javax.swing.JLayeredPane paint 
 //	........36	.........1	......1943	edu.stonybrook.eserc.projectjava.WaveInteraction2.SumWaves draw 
 //	........36	.........1	.........0	java.util.IdentityHashMap.IdentityHashMapEntry construct 
-//	........36	.........0	......7701	a2s.Applet$1 paintComponent 
+//	........36	.........0	......7701	java.applet.Applet;$1 paintComponent 
 //	........36	.........0	........41	javax.swing.JApplet getGraphics 
 //	........36	.........0	.........4	java.util.IdentityHashMap getEntry 
 //	........36	.........0	.........0	javax.swing.AbstractButton paintBorder 
@@ -1085,7 +1085,7 @@ public boolean mouseUp(Event evt, int x, int y) {
 //	.......102	.........4	.......131	javax.swing.RepaintManager addDirtyRegion 
 //	.......102	.........3	.........0	java.util.IdentityHashMap.IdentityHashMapEntry construct 
 //	.......102	.........2	......8121	javax.swing.JLayeredPane paint 
-//	.......102	.........2	......4209	a2s.Applet$1 paintComponent 
+//	.......102	.........2	......4209	java.applet.Applet;$1 paintComponent 
 //	.......102	.........2	......1080	edu.stonybrook.eserc.projectjava.WaveInteraction2.SumWaves draw 
 //	.......102	.........1	........91	javax.swing.JApplet getGraphics 
 //	.......102	.........1	.........9	java.util.IdentityHashMap getEntry 
@@ -1160,7 +1160,7 @@ public boolean mouseUp(Event evt, int x, int y) {
 //	.......115	.........3	......1216	edu.stonybrook.eserc.projectjava.WaveInteraction2.SumWaves draw 
 //	.......115	.........3	.........0	java.util.IdentityHashMap.IdentityHashMapEntry construct 
 //	.......115	.........2	......7981	javax.swing.JLayeredPane paint 
-//	.......115	.........2	......4721	a2s.Applet$1 paintComponent 
+//	.......115	.........2	......4721	java.applet.Applet;$1 paintComponent 
 //	.......115	.........2	.........9	java.util.IdentityHashMap getEntry 
 //	.......115	.........2	.........1	javax.swing.AbstractButton paintBorder 
 //	.......115	.........2	.........0	java.awt.Rectangle setBounds 

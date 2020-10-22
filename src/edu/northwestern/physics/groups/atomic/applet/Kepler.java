@@ -28,14 +28,14 @@ package edu.northwestern.physics.groups.atomic.applet;
  */
 
 
-import a2s.Applet;
+import java.applet.Applet;
 
 import java.awt.BorderLayout;
 
-import a2s.Button;
-import a2s.Canvas;
-import a2s.Checkbox;
-import a2s.CheckboxGroup;
+import java.awt.Button;
+import java.awt.Canvas;
+import java.awt.Checkbox;
+import java.awt.CheckboxGroup;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -44,8 +44,8 @@ import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.Image;
 
-import a2s.Label;
-import a2s.Panel;
+import java.awt.Label;
+import java.awt.Panel;
 
 import java.awt.Point;
 import java.awt.event.ActionEvent;
@@ -54,7 +54,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JRadioButton;
 import javax.swing.Timer;
 
-import a2s.TextField;
+import java.awt.TextField;
 
 //web_Ready
 //web_AppletName= Kepler
@@ -86,10 +86,17 @@ public class Kepler extends Applet implements ActionListener {
 		setSize(550, 500);
 	}
 
+	public boolean action(Event evt, Object what) {
+		return performAction(what);
+	}
 	// was action(), updating to actionPerformed.  -PF
 	@Override
 	public void actionPerformed(ActionEvent evt) {
 	    Object target = evt.getSource();
+	    performAction(target);
+	}
+	
+	private boolean performAction(Object target) {
 		if ((target instanceof Button) || (target instanceof TextField)) {
 			twoBody.setE(inputPanel.getE());
 			twoBody.setP(inputPanel.getP());
@@ -112,7 +119,7 @@ public class Kepler extends Applet implements ActionListener {
 				}
 			}
 		}
-//		return true;
+		return true;
 	}
 
 	@Override
@@ -543,9 +550,9 @@ class KeplerOptionPanel extends Panel implements ActionListener {
 	 */
 	private static final long serialVersionUID = 1L;
 	CheckboxGroup perspective;
-	JRadioButton redPlanet;
-	JRadioButton bluePlanet;
-	JRadioButton center;
+	Checkbox redPlanet;
+	Checkbox bluePlanet;
+    Checkbox center;
 
 	Checkbox displayArea;
 	Label area;
@@ -567,13 +574,13 @@ class KeplerOptionPanel extends Panel implements ActionListener {
 		perspective = new CheckboxGroup();
 
 		add(new Label("Perspective: "));
-		redPlanet = Checkbox.newRadioButton("red planet", perspective, false);
+		redPlanet = new Checkbox("red planet", perspective, false);
 		redPlanet.setForeground(Color.red);
 		add(redPlanet);
-		bluePlanet = Checkbox.newRadioButton("blue planet", perspective, false);
+		bluePlanet = new Checkbox("blue planet", perspective, false);
 		bluePlanet.setForeground(Color.blue);
 		add(bluePlanet);
-		add(center = Checkbox.newRadioButton("center of mass", perspective, true));
+		add(center = new Checkbox("center of mass", perspective, true));
 
 		add(displayArea = new Checkbox("show area"));
 
@@ -586,12 +593,12 @@ class KeplerOptionPanel extends Panel implements ActionListener {
 		add(startStop);
 		
 		// added for swingjs. -PF
-		redPlanet.addActionListener(app);
-		bluePlanet.addActionListener(app);
-		center.addActionListener(app);
-		displayArea.addActionListener(app);
-		displayVelocity.addActionListener(app);
-		displayOrbit.addActionListener(app);
+//		redPlanet.addActionListener(app);
+//		bluePlanet.addActionListener(app);
+//		center.addActionListener(app);
+//		displayArea.addActionListener(app);
+//		displayVelocity.addActionListener(app);
+//		displayOrbit.addActionListener(app);
 		startStop.addActionListener(this);
 
 		isStart = false;
@@ -625,7 +632,7 @@ class KeplerOptionPanel extends Panel implements ActionListener {
 	}
 
 	public int Perspective() {
-		final JRadioButton cb = perspective.getSelectedCheckbox();
+		 Checkbox cb = perspective.getSelectedCheckbox();
 		if (cb == redPlanet) {
 			return 1;
 		}

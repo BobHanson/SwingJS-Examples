@@ -11,7 +11,7 @@ package com.falstad;
 //web_Date= $Date: 2017-01-01 00:08:18 -0600 (Sun, 01 Jan 2017) $
 //web_Features= graphics, AWT-to-Swing
 
-import a2s.Applet;
+import java.applet.Applet;
 
 import com.falstad.Complex;
 
@@ -43,20 +43,17 @@ import java.text.NumberFormat;
 import java.util.Random;
 import java.util.Vector;
 
-import a2s.Button;
-import a2s.Canvas;
-import a2s.Checkbox;
-import a2s.CheckboxMenuItem;
-import a2s.Choice;
-import a2s.Frame;
-import a2s.Label;
-import a2s.Menu;
-import a2s.MenuBar;
-import a2s.MenuItem;
-import a2s.Scrollbar;
-
-import javax.swing.ButtonGroup;
-import javax.swing.JRadioButtonMenuItem;
+import java.awt.Button;
+import java.awt.Canvas;
+import java.awt.Checkbox;
+import java.awt.CheckboxMenuItem;
+import java.awt.Choice;
+import java.awt.Frame;
+import java.awt.Label;
+import java.awt.Menu;
+import java.awt.MenuBar;
+import java.awt.MenuItem;
+import java.awt.Scrollbar;
 
 class QuantumOscCanvas extends Canvas {
  QuantumOscFrame pg;
@@ -69,8 +66,7 @@ class QuantumOscCanvas extends Canvas {
  public void update(Graphics g) {
 	pg.updateQuantumOsc(g);
  }
- public void paintComponent(Graphics g) {
-     super.paintComponent(g);
+ public void paint(Graphics g) {
 	pg.updateQuantumOsc(g);
  }
 };
@@ -299,7 +295,7 @@ implements ComponentListener, ActionListener, AdjustmentListener,
 	m2.add(probCheckItem = getRadioItem("Probability"));
 	m2.add(probPhaseCheckItem = getRadioItem("Probability + Phase"));
 	m2.add(magPhaseCheckItem = getRadioItem("Magnitude + Phase"));
-	magPhaseCheckItem.setSelected(true);
+	magPhaseCheckItem.select(true);
 
 	m = new Menu("Measure");
 	mb.add(m);
@@ -1136,7 +1132,7 @@ implements ComponentListener, ActionListener, AdjustmentListener,
 	double uncertx = Math.sqrt(expectx2-expectx*expectx);
 	double uncerty = Math.sqrt(expecty2-expecty*expecty);
 	double bestscale = 0;
-	if (probCheckItem.isSelected() || probPhaseCheckItem.isSelected())
+	if (probCheckItem.selected() || probPhaseCheckItem.selected())
 	    bestscale = 1/maxsq;
 	else
 	    bestscale = 1/maxnm;
@@ -1154,7 +1150,7 @@ implements ComponentListener, ActionListener, AdjustmentListener,
 		double fr = arrayr[x][y];
 		double fi = arrayi[x][y];
 		double fv = (fr*fr+fi*fi);
-		if (magPhaseCheckItem.isSelected())
+		if (magPhaseCheckItem.selected())
 		    fv = Math.sqrt(fv);
 		fv *= 255*vmap.scale*brightmult;
 		PhaseColor c = getPhaseColor(fr, fi);
@@ -1277,7 +1273,7 @@ implements ComponentListener, ActionListener, AdjustmentListener,
  PhaseColor getPhaseColor(double x, double y) {
 	int sector = 0;
 	double val = 0;
-	if (probCheckItem.isSelected())
+	if (probCheckItem.selected())
 	    return whitePhaseColor;
 	if (x == 0 && y == 0)
 	    return phaseColors[0][0];
@@ -1734,7 +1730,7 @@ implements ComponentListener, ActionListener, AdjustmentListener,
 	int ox = -1, oy = 0;
 	double bestscale = 0;
 	if (fi != null &&
-	      (probCheckItem.isSelected() || probPhaseCheckItem.isSelected()))
+	      (probCheckItem.selected() || probPhaseCheckItem.selected()))
 	    bestscale = 1/maxsq;
 	else
 	    bestscale = 1/maxnm;

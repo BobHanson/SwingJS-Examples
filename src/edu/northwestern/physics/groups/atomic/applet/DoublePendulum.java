@@ -47,15 +47,15 @@ package edu.northwestern.physics.groups.atomic.applet;
 
  */
 
-import a2s.Applet;
-import a2s.Button;
-import a2s.Canvas;
+import java.applet.Applet;
+import java.awt.Button;
+import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
-import a2s.Label;
+import java.awt.Label;
 import java.awt.Panel;
-import a2s.Scrollbar;
+import java.awt.Scrollbar;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.AdjustmentEvent;

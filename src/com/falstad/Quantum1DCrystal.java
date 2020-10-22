@@ -39,22 +39,19 @@ import java.lang.Math;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 
-import a2s.Button;
-import a2s.Canvas;
-import a2s.Checkbox;
-import a2s.CheckboxMenuItem;
-import a2s.Choice;
-import a2s.Frame;
-import a2s.Label;
-import a2s.Menu;
-import a2s.MenuBar;
-import a2s.MenuItem;
-import a2s.Scrollbar;
+import java.awt.Button;
+import java.awt.Canvas;
+import java.awt.Checkbox;
+import java.awt.CheckboxMenuItem;
+import java.awt.Choice;
+import java.awt.Frame;
+import java.awt.Label;
+import java.awt.Menu;
+import java.awt.MenuBar;
+import java.awt.MenuItem;
+import java.awt.Scrollbar;
 
-import javax.swing.ButtonGroup;
-import javax.swing.JRadioButtonMenuItem;
-
-import a2s.Applet;
+import java.applet.Applet;
 
 import gov.nist.jama.Matrix;
 import gov.nist.jama.EigenvalueDecomposition;
@@ -70,8 +67,9 @@ class Quantum1DCrystalCanvas extends Canvas {
     public void update(Graphics g) {
 	pg.updateQuantum1DCrystal(g);
     }
-    public void paintComponent(Graphics g) {
-        super.paintComponent(g);
+    
+    public void paint(Graphics g) {
+        super.paint(g);
 	pg.updateQuantum1DCrystal(g);
     }
 };
@@ -333,7 +331,7 @@ class Quantum1DCrystalFrame extends Frame
         m2.add(probCheckItem = getRadioItem("Probability"));
         m2.add(probPhaseCheckItem = getRadioItem("Probability + Phase"));
 //      probPhaseCheckItem.setState(true);
-        probPhaseCheckItem.setSelected(true);
+        probPhaseCheckItem.select(true);
         m2.add(reImCheckItem = getRadioItem("Real + Imaginary Parts"));
         m2.add(magPhaseCheckItem = getRadioItem("Magnitude + Phase"));
 
@@ -342,7 +340,7 @@ class Quantum1DCrystalFrame extends Frame
 	mb.add(m);
 	m.add(extendedZonesItem = getRadioItem("Extended Zone Scheme"));
 	m.add(reducedZonesItem  = getRadioItem("Reduced Zone Scheme"));
-	reducedZonesItem.setSelected(true);
+	reducedZonesItem.select(true);
 	m.add(repeatedZonesItem = getRadioItem("Repeated Zone Scheme"));
 	setMenuBar(mb);
 
@@ -746,7 +744,7 @@ class Quantum1DCrystalFrame extends Frame
 	    }
 	    
 	    g.setColor(Color.white);
-	    if (repeatedZonesItem.isSelected()) {
+	    if (repeatedZonesItem.selected()) {
 		viewDispersion.cellw2 = viewDispersion.width/10;
 		int cells = (viewDispersion.width/2)/viewDispersion.cellw2 + 1;
 		for (i = 0; i != dispersion.length; i++)
@@ -754,13 +752,13 @@ class Quantum1DCrystalFrame extends Frame
 			drawDispersion(g, i, j, true, true);
 	    }
 
-	    if (reducedZonesItem.isSelected()) {
+	    if (reducedZonesItem.selected()) {
 		viewDispersion.cellw2 = viewDispersion.width/3;
 		for (i = 0; i != dispersion.length; i++)
 		    drawDispersion(g, i, 0, true, true);
 	    }
 
-	    if (extendedZonesItem.isSelected()) {
+	    if (extendedZonesItem.selected()) {
 		viewDispersion.cellw2 = viewDispersion.width/10;
 		boolean xp = true;
 		for (i = 0; i != dispersion.length; i++) {
@@ -777,7 +775,7 @@ class Quantum1DCrystalFrame extends Frame
 	    }
 	    int x = (int) (viewDispersion.cellw2*selectedK*2+
 			   viewDispersion.width/2);
-	    if (!extendedZonesItem.isSelected())
+	    if (!extendedZonesItem.selected())
 		g.drawLine(x, top, x, viewDispersion.y+viewDispersion.height);
 	}
 	
@@ -906,7 +904,7 @@ class Quantum1DCrystalFrame extends Frame
 	int ox = -1, oy = 0;
 	double bestscale = 0;
 	if (fi != null &&
-	      (probCheckItem.isSelected() || probPhaseCheckItem.isSelected()))
+	      (probCheckItem.selected() || probPhaseCheckItem.selected()))
 	    bestscale = 1/maxsq;
 	else
 	    bestscale = 1/maxnm;
@@ -938,8 +936,8 @@ class Quantum1DCrystalFrame extends Frame
 	}
 	*/
 
-	if ((probCheckItem.isSelected() || probPhaseCheckItem.isSelected() ||
-	     magPhaseCheckItem.isSelected()) && fi != null) {
+	if ((probCheckItem.selected() || probPhaseCheckItem.selected() ||
+	     magPhaseCheckItem.selected()) && fi != null) {
 
 	    // draw probability or magnitude
 	    g.setColor(Color.white);
@@ -948,11 +946,11 @@ class Quantum1DCrystalFrame extends Frame
 		int x = winSize.width * i / (count-1);
 		double dy = 0;
 		int ii = i+offset;
-		if (!magPhaseCheckItem.isSelected())
+		if (!magPhaseCheckItem.selected())
 		    dy = (fr[ii]*fr[ii]+fi[ii]*fi[ii]);
 		else
 		    dy = Math.sqrt(fr[ii]*fr[ii]+fi[ii]*fi[ii]);
-		if (!probCheckItem.isSelected()) {
+		if (!probCheckItem.selected()) {
 		    double ang = Math.atan2(fi[ii], fr[ii]);
 		    g.setColor(phaseColors[(int)((ang+pi)*phaseColorCount/(2*pi+.2))]);
 		}
@@ -1112,7 +1110,7 @@ class Quantum1DCrystalFrame extends Frame
 	x -= viewDispersion.width/2;
 	double k = x*.5/viewDispersion.cellw2;
 
-	if (extendedZonesItem.isSelected()) {
+	if (extendedZonesItem.selected()) {
 	    int band = 0;
 	    while (k > .5) {
 		k -= .5;
@@ -1128,7 +1126,7 @@ class Quantum1DCrystalFrame extends Frame
 	    return;
 	}
 	
-	if (repeatedZonesItem.isSelected()) {
+	if (repeatedZonesItem.selected()) {
 	    while (k > .5)
 		k -= 1;
 	    while (k < -.5)

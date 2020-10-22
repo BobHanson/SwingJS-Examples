@@ -1,15 +1,15 @@
 package es.uah.sdspage;
 // Source File Name:   Parameters.java
 
-import a2s.Button;
-import a2s.Checkbox;
-import a2s.CheckboxGroup;
-import a2s.Choice;
+import java.awt.Button;
+import java.awt.Checkbox;
+import java.awt.CheckboxGroup;
+import java.awt.Choice;
 import java.awt.Color;
 import java.awt.Event;
 import java.awt.GridLayout;
-import a2s.Label;
-import a2s.Panel;
+import java.awt.Label;
+import java.awt.Panel;
 
 public class Parameters extends Panel
 {

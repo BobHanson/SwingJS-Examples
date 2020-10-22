@@ -1,15 +1,15 @@
 package es.uah.sdspage; 
 // Source File Name:   D:\Dave\Java\Electrophoresis\Electrophoresis.java
 
-import a2s.Applet;
+import java.applet.Applet;
 import java.applet.AudioClip;
 import java.awt.BorderLayout;
-import a2s.Button;
+import java.awt.Button;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Event;
 import java.awt.GridLayout;
-import a2s.Panel;
+import java.awt.Panel;
 import java.net.MalformedURLException;
 import java.net.URL;
 

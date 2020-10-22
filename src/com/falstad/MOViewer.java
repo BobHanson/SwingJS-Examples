@@ -15,28 +15,28 @@
 
 package com.falstad;
 
-import a2s.Button;
-import a2s.Canvas;
-import a2s.Checkbox;
-import a2s.CheckboxMenuItem;
-import a2s.Choice;
+import java.awt.Button;
+import java.awt.Canvas;
+import java.awt.Checkbox;
+import java.awt.CheckboxMenuItem;
+import java.awt.Choice;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Event;
 import java.awt.FontMetrics;
-import a2s.Frame;
+import java.awt.Frame;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Insets;
-import a2s.Label;
+import java.awt.Label;
 import java.awt.LayoutManager;
-import a2s.Menu;
-import a2s.MenuBar;
-import a2s.MenuItem;
+import java.awt.Menu;
+import java.awt.MenuBar;
+import java.awt.MenuItem;
 import java.awt.Rectangle;
-import a2s.Scrollbar;
+import java.awt.Scrollbar;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.AdjustmentEvent;
@@ -57,10 +57,7 @@ import java.net.URL;
 import java.util.Random;
 import java.util.StringTokenizer;
 
-import javax.swing.JRadioButtonMenuItem;
-import javax.swing.ButtonGroup;
-
-import a2s.Applet;
+import java.applet.Applet;
 
 class MOViewerCanvas extends Canvas {
     MOViewerFrame pg;
@@ -75,10 +72,12 @@ class MOViewerCanvas extends Canvas {
 		public void update(Graphics g) {
 	pg.updateMOViewer(g);
     }
-    @Override
-		public void paintComponent(Graphics g) {
-	pg.updateMOViewer(g);
-    }
+
+	@Override
+	public void paint(Graphics g) {
+		super.paint(g);
+		pg.updateMOViewer(g);
+	}
 }
 
 class MOViewerLayout implements LayoutManager {
@@ -377,7 +376,7 @@ class MOViewerFrame extends Frame
                 samplesGroup.add(samplesItems[i]);
                 samplesItems[i].setActionCommand(""+ samplesNums[i]);
         }
-	samplesItems[1].setSelected(true);
+	samplesItems[1].select(true);
 	
 	int i;
 	stateChooser = new Choice();
@@ -487,11 +486,11 @@ class MOViewerFrame extends Frame
 	return mi;
     }
 
-    JRadioButtonMenuItem getRadioItem(String s) {
-        JRadioButtonMenuItem mi = new JRadioButtonMenuItem(s);
-        mi.addItemListener(this);
-        return mi;
-}
+	JRadioButtonMenuItem getRadioItem(String s) {
+		JRadioButtonMenuItem mi = new JRadioButtonMenuItem(s);
+		mi.addItemListener(this);
+		return mi;
+	}
 
     PhaseColor genPhaseColor(int sec, double ang) {
 	// convert to 0 .. 2*pi angle
@@ -1715,7 +1714,7 @@ class MOViewerFrame extends Frame
 	public void itemStateChanged(ItemEvent e) {
 		if (samplesItems == null)
 			return;
-		if (e.getItemSelectable() instanceof JRadioButtonMenuItem) {
+		if (e.getItemSelectable() instanceof CheckboxMenuItem) {
                     if (e.getStateChange() != ItemEvent.SELECTED)
                             return;
                     // int nsam = samplesNums.length;

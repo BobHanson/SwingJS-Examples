@@ -37,22 +37,19 @@ import java.lang.Math;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 
-import javax.swing.ButtonGroup;
-import javax.swing.JRadioButtonMenuItem;
+import java.applet.Applet;
 
-import a2s.Applet;
-
-import a2s.Button;
-import a2s.Canvas;
-import a2s.Checkbox;
-import a2s.CheckboxMenuItem;
-import a2s.Choice;
-import a2s.Frame;
-import a2s.Label;
-import a2s.Menu;
-import a2s.MenuBar;
-import a2s.MenuItem;
-import a2s.Scrollbar;
+import java.awt.Button;
+import java.awt.Canvas;
+import java.awt.Checkbox;
+import java.awt.CheckboxMenuItem;
+import java.awt.Choice;
+import java.awt.Frame;
+import java.awt.Label;
+import java.awt.Menu;
+import java.awt.MenuBar;
+import java.awt.MenuItem;
+import java.awt.Scrollbar;
 
 class QuantumStatesCanvas extends Canvas {
     QuantumStatesFrame pg;
@@ -62,13 +59,14 @@ class QuantumStatesCanvas extends Canvas {
     public Dimension getPreferredSize() {
 	return new Dimension(300,400);
     }
-    public void update(Graphics g) {
+    public void paint(Graphics g) {
+    	super.paint(g);
 	pg.updateQuantumStates(g);
     }
-    public void paintComponent(Graphics g) {
-	super.paintComponent(g);
-	pg.updateQuantumStates(g);
-    }
+//    public void paintComponent(Graphics g) {
+//	super.paintComponent(g);
+//	pg.updateQuantumStates(g);
+//    }
 };
 
 class QuantumStatesLayout implements LayoutManager {
@@ -343,7 +341,7 @@ class QuantumStatesFrame extends Frame
 	m.add(m2);
 	m2.add(probCheckItem = getRadioItem("Probability"));
 	m2.add(probPhaseCheckItem = getRadioItem("Probability + Phase"));
-	probPhaseCheckItem.setSelected(true);
+	probPhaseCheckItem.select(true);
 	m2.add(reImCheckItem = getRadioItem("Real + Imaginary Parts"));
 	m2.add(magPhaseCheckItem = getRadioItem("Magnitude + Phase"));
 
@@ -650,9 +648,9 @@ class QuantumStatesFrame extends Frame
         g.drawString(s, (winSize.width-fm.stringWidth(s))/2, y);
     }
 
-//    public void paint(Graphics g) {
-//	cv.repaint();
-//    }
+    public void paint(Graphics g) {
+	cv.repaint();
+    }
 
     long lastTime;
     public void updateQuantumStates(Graphics realg) {
@@ -1100,7 +1098,7 @@ class QuantumStatesFrame extends Frame
 	int ox = -1, oy = 0;
 	double bestscale = 0;
 	if (fi != null &&
-	      (probCheckItem.isSelected() || probPhaseCheckItem.isSelected()))
+	      (probCheckItem.selected() || probPhaseCheckItem.selected()))
 	    bestscale = 1/maxsq;
 	else
 	    bestscale = 1/maxnm;
@@ -1129,8 +1127,8 @@ class QuantumStatesFrame extends Frame
 	}
 	*/
 
-	if ((probCheckItem.isSelected() || probPhaseCheckItem.isSelected() ||
-	     magPhaseCheckItem.isSelected()) && fi != null) {
+	if ((probCheckItem.selected() || probPhaseCheckItem.selected() ||
+	     magPhaseCheckItem.selected()) && fi != null) {
 
 	    // draw probability or magnitude
 	    g.setColor(Color.white);
@@ -1139,11 +1137,11 @@ class QuantumStatesFrame extends Frame
 		int x = winSize.width * i / (count-1);
 		double dy = 0;
 		int ii = i+offset;
-		if (!magPhaseCheckItem.isSelected())
+		if (!magPhaseCheckItem.selected())
 		    dy = (fr[ii]*fr[ii]+fi[ii]*fi[ii]);
 		else
 		    dy = Math.sqrt(fr[ii]*fr[ii]+fi[ii]*fi[ii]);
-		if (!probCheckItem.isSelected()) {
+		if (!probCheckItem.selected()) {
 		    double ang = Math.atan2(fi[ii], fr[ii]);
 		    g.setColor(phaseColors[(int)((ang+pi)*phaseColorCount/(2*pi+.2))]);
 		}
@@ -1499,8 +1497,8 @@ class QuantumStatesFrame extends Frame
 		setupModified = true;
 		adjustingStates = statesChanged = true;
 	    } else {
-		if (probCheckItem.isSelected() ||
-		    probPhaseCheckItem.isSelected()) {
+		if (probCheckItem.selected() ||
+		    probPhaseCheckItem.selected()) {
 		    double valnew = Math.sqrt(val2);
 		    double n = Math.sqrt(func[lox]*func[lox] +
 						   funci[lox]*funci[lox]);
@@ -1511,7 +1509,7 @@ class QuantumStatesFrame extends Frame
 		    // edit magnitude, preserving phase
 		    func[lox] = valnew*func[lox]/n;
 		    funci[lox] = valnew*funci[lox]/n;
-		} else if (magPhaseCheckItem.isSelected()) {
+		} else if (magPhaseCheckItem.selected()) {
 		    double n = Math.sqrt(func[lox]*func[lox] +
 						   funci[lox]*funci[lox]);
 		    if (n == 0) {

@@ -26,9 +26,9 @@ import javax.swing.Timer;
 // keep references here that look like AWT Applet and Components
 // even though everything has to be Swing JApplet and JComponents.
 
-import a2s.Applet;
-import a2s.Button;
-import a2s.Scrollbar;
+import java.applet.Applet;
+import java.awt.Button;
+import java.awt.Scrollbar;
 
 
 //web_Ready
@@ -43,7 +43,7 @@ import a2s.Scrollbar;
 
 public class Interaction extends Applet implements Runnable {
 	
-	// Note that a2s.Applet subclasses javax.swing.JApplet, not java.applet.Applet
+	// Note that java.applet.Applet; subclasses javax.swing.JApplet, not java.applet.Applet
 
 	private Rectangle border;
 	private Rectangle graph;
@@ -83,7 +83,7 @@ public class Interaction extends Applet implements Runnable {
 
 		this.setSize(600, 520);
 		
-		// super.init() is a SwingJS call to a2s.Applet that 
+		// super.init() is a SwingJS call to java.applet.Applet; that 
 		// enable the older handleEvent() method in Java AWT applets
 		// and also fixes flashing/background/missing button problems
 		// in Java Swing when both background painting and buttons are involved.
@@ -501,7 +501,7 @@ public class Interaction extends Applet implements Runnable {
 	}
 
 	@Override
-	protected void paintMe(Graphics graphics) {
+	public void paint(Graphics graphics) {
 		defineLayout();
 		if (this.offg == null) {
 			this.image = new Image[3];
@@ -1041,7 +1041,7 @@ public class Interaction extends Applet implements Runnable {
 // scheduleProcessingRunnable
 // ........34 .........1 ......2329 edu.stonybrook.eserc.projectjava.waveinteraction.SumWaves draw
 // ........34 .........0 ......8894 javax.swing.JLayeredPane paint
-// ........34 .........0 ......7892 a2s.Applet$1 paintComponent
+// ........34 .........0 ......7892 java.applet.Applet;$1 paintComponent
 // ........34 .........0 ........40 edu.stonybrook.eserc.projectjava.waveinteraction.Interaction setHandles
 // ........34 .........0 ........30 javax.swing.JApplet getGraphics
 // ........34 .........0 .........2 java.util.IdentityHashMap getEntry

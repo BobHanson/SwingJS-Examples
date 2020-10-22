@@ -27,15 +27,15 @@ package edu.northwestern.physics.groups.atomic.applet;
  * @version 0.1, June 1999
  */
 
-import a2s.Applet;
+import java.applet.Applet;
 import java.awt.BorderLayout;
-import a2s.Canvas;
-import a2s.Checkbox;
-import a2s.Choice;
+import java.awt.Canvas;
+import java.awt.Checkbox;
+import java.awt.Choice;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.GridLayout;
-import a2s.Panel;
+import java.awt.Panel;
 import java.awt.Point;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
@@ -319,7 +319,7 @@ class LensCanvas extends Canvas {
 			final int x = e.getX();
 			final int y = e.getY();
 			lenseSys.move(x, y);
-			getTopLevelAncestor().repaint();
+			repaint();
 		}
 	}
 
@@ -364,15 +364,14 @@ class LensControl extends Panel {
 			parent.item = lenseType.getSelectedIndex();
 			parent.init();
 			setView();
-			getTopLevelAncestor().repaint();
-			// parent.repaint(); // BH
+			parent.repaint();
 		}
 	}
 
 	private class ViewListener implements ItemListener {
 		public void itemStateChanged(ItemEvent e) {
 			setView();
-			getTopLevelAncestor().repaint();
+			parent.repaint();
 		}
 	}
 

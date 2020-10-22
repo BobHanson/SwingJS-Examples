@@ -10,7 +10,7 @@ import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import a2s.Panel;
+import java.awt.Panel;
 import java.text.DecimalFormat;
 
 import javax.swing.Timer;

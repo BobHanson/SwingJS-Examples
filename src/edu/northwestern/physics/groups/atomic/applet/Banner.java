@@ -2,8 +2,8 @@ package edu.northwestern.physics.groups.atomic.applet;
 
 import java.awt.Color;
 import java.awt.GridLayout;
-import a2s.Label;
-import a2s.Panel;
+import java.awt.Label;
+import java.awt.Panel;
 
 public class Banner extends Panel {
 

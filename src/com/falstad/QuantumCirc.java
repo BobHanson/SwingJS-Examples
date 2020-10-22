@@ -39,27 +39,21 @@ import java.lang.reflect.Method;
 import java.util.Random;
 import java.util.Vector;
 
-import javax.swing.ButtonGroup;
-import javax.swing.JRadioButtonMenuItem;
-
-import a2s.Applet;
+import java.applet.Applet;
 
 import com.falstad.FFT;
 
-import a2s.Canvas;
-import a2s.Checkbox;
-import a2s.CheckboxMenuItem;
-import a2s.Choice;
-import a2s.Frame;
-import a2s.Label;
-import a2s.Menu;
-import a2s.MenuBar;
-import a2s.MenuItem;
-import a2s.Scrollbar;
-import a2s.Button;
-
-import javax.swing.ButtonGroup;
-import javax.swing.JRadioButtonMenuItem;
+import java.awt.Canvas;
+import java.awt.Checkbox;
+import java.awt.CheckboxMenuItem;
+import java.awt.Choice;
+import java.awt.Frame;
+import java.awt.Label;
+import java.awt.Menu;
+import java.awt.MenuBar;
+import java.awt.MenuItem;
+import java.awt.Scrollbar;
+import java.awt.Button;
 
 class QuantumCircCanvas extends Canvas {
  QuantumCircFrame pg;
@@ -364,7 +358,7 @@ implements ComponentListener, ActionListener, AdjustmentListener,
 	m2.add(probCheckItem = getRadioItem("Probability"));
 	m2.add(probPhaseCheckItem = getRadioItem("Probability + Phase"));
 	m2.add(magPhaseCheckItem = getRadioItem("Magnitude + Phase"));
-	magPhaseCheckItem.setSelected(true);
+	magPhaseCheckItem.select(true);
 
 	m = new Menu("Measure");
 	mb.add(m);
@@ -1056,7 +1050,7 @@ implements ComponentListener, ActionListener, AdjustmentListener,
 		expectx2 += fv*y*xv*xv;
 		expecty2 += fv*y*yv*yv;
 		tot += fv*y;
-		if (magPhaseCheckItem.isSelected())
+		if (magPhaseCheckItem.selected())
 		    fv = java.lang.Math.sqrt(fv);
 		if (fv > mx)
 		    mx = fv;
@@ -1079,7 +1073,7 @@ implements ComponentListener, ActionListener, AdjustmentListener,
 		double ar = fr[x][y];
 		double ai = fi[x][y];
 		double fv = (ar*ar+ai*ai);
-		if (magPhaseCheckItem.isSelected())
+		if (magPhaseCheckItem.selected())
 		    fv = java.lang.Math.sqrt(fv);
 		fv *= mult;
 		PhaseColor c = getPhaseColor(ar, ai);
@@ -1245,7 +1239,7 @@ implements ComponentListener, ActionListener, AdjustmentListener,
 	int ox = -1, oy = 0;
 	double bestscale = 0;
 	if (fi != null &&
-	      (probCheckItem.isSelected() || probPhaseCheckItem.isSelected()))
+	      (probCheckItem.selected() || probPhaseCheckItem.selected()))
 	    bestscale = 1/maxsq;
 	else
 	    bestscale = 1/maxnm;
@@ -1399,7 +1393,7 @@ implements ComponentListener, ActionListener, AdjustmentListener,
  PhaseColor getPhaseColor(double x, double y) {
 	int sector = 0;
 	double val = 0;
-	if (probCheckItem.isSelected())
+	if (probCheckItem.selected())
 	    return whitePhaseColor;
 	if (x == 0 && y == 0)
 	    return phaseColors[0][0];
